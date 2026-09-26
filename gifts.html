@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gift List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="confetti-bar" aria-hidden="true"></div>
+
+  <header class="gifts-page-header">
+    <div class="gifts-page-header-inner">
+      <a href="index.html" class="back-link">← Back to the party page</a>
+      <p class="chapter-label" id="chapter-label"></p>
+      <h1>Gift List</h1>
+      <p class="gifts-intro" id="gifts-intro"></p>
+      <p class="affiliate-disclosure" id="affiliate-disclosure" hidden></p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section gifts-plp-section">
+      <div class="section-inner section-inner-wide">
+
+        <div class="filter-bar" id="category-filters"></div>
+        <label class="claimed-toggle">
+          <input type="checkbox" id="hide-claimed-checkbox" />
+          Hide items already claimed
+        </label>
+
+        <div class="gift-grid" id="gift-grid"></div>
+        <p class="empty-state" id="empty-state" hidden>No gifts match this filter — try another category.</p>
+
+        <p class="gifts-ideas-note" id="gifts-ideas-note"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p id="footer-chapter"></p>
+    <p class="footer-sub">Made with love, one chapter at a time.</p>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="js/gifts.js"></script>
+</body>
+</html>
