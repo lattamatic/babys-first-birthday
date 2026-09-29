@@ -43,6 +43,22 @@ h1, h2 {
   );
 }
 
+.version-switch {
+  text-align: center;
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+}
+
+.version-switch a {
+  color: var(--ink);
+  opacity: 0.65;
+  text-decoration: none;
+}
+
+.version-switch a:hover {
+  opacity: 1;
+}
+
 /* ---------- Hero ---------- */
 
 .hero {
