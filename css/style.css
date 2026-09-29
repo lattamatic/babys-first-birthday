@@ -462,6 +462,16 @@ h1, h2 {
   text-align: center;
 }
 
+.filter-label {
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b5c66;
+  margin: 0 0 8px;
+}
+
 .filter-bar {
   display: flex;
   flex-wrap: wrap;

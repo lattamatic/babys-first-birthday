@@ -9,8 +9,29 @@ function el(tag, className, text) {
 
 const state = {
   category: "All",
+  priceBand: "All",
   hideClaimed: false,
 };
+
+// Price bands are derived from the free-text `price` field (e.g. "~20-35€",
+// "€41", "varies") rather than a separate field — so adding a new gift to
+// content.js never requires maintaining a band by hand.
+const PRICE_BANDS = [
+  { label: "Under €12", max: 12 },
+  { label: "€12–19", max: 20 },
+  { label: "€20–39", max: 40 },
+  { label: "€40–79", max: 80 },
+  { label: "€80–149", max: 150 },
+  { label: "€150+", max: Infinity },
+];
+
+function getPriceBand(priceStr) {
+  const numbers = (priceStr.match(/\d+(\.\d+)?/g) || []).map(Number);
+  if (numbers.length === 0) return "Varies";
+  const value = numbers.length === 1 ? numbers[0] : (numbers[0] + numbers[1]) / 2;
+  const band = PRICE_BANDS.find((b) => value < b.max);
+  return band.label;
+}
 
 // Appends your Amazon Associates tag to amazon.* links, if one is set in
 // content.js. Every other retailer link is returned unchanged.
@@ -48,21 +69,32 @@ function getCategories() {
   return ["All", ...Array.from(categories)];
 }
 
-function renderFilters() {
-  const container = document.getElementById("category-filters");
+function getPriceBandOptions() {
+  const present = new Set(CONTENT.gifts.items.map((item) => getPriceBand(item.price)));
+  const ordered = [...PRICE_BANDS.map((b) => b.label), "Varies"].filter((label) => present.has(label));
+  return ["All", ...ordered];
+}
+
+function renderFilterGroup(containerId, options, stateKey) {
+  const container = document.getElementById(containerId);
   container.innerHTML = "";
 
-  getCategories().forEach((category) => {
-    const chip = el("button", "filter-chip", category);
+  options.forEach((option) => {
+    const chip = el("button", "filter-chip", option);
     chip.type = "button";
-    if (category === state.category) chip.classList.add("filter-chip-active");
+    if (option === state[stateKey]) chip.classList.add("filter-chip-active");
     chip.addEventListener("click", () => {
-      state.category = category;
+      state[stateKey] = option;
       renderFilters();
       renderGrid();
     });
     container.appendChild(chip);
   });
+}
+
+function renderFilters() {
+  renderFilterGroup("category-filters", getCategories(), "category");
+  renderFilterGroup("price-filters", getPriceBandOptions(), "priceBand");
 }
 
 function renderGrid() {
@@ -73,6 +105,7 @@ function renderGrid() {
   const items = CONTENT.gifts.items.filter((item) => {
     if (state.hideClaimed && item.claimed) return false;
     if (state.category !== "All" && item.category !== state.category) return false;
+    if (state.priceBand !== "All" && getPriceBand(item.price) !== state.priceBand) return false;
     return true;
   });
 
