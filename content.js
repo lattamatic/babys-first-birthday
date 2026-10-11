@@ -231,9 +231,9 @@ const CONTENT = {
         claimed: false,
       },
       {
-        id: "taf-toys-first-music-set",
-        name: "Premier set musical pour les petits",
-        image: "",
+        id: "wooden-music-set",
+        name: "Wooden music set: maracas, tambourine and bells",
+        image: "images/gifts/wooden-music-set.jpg",
         claimed: false,
       },
       {
@@ -268,8 +268,8 @@ const CONTENT = {
       },
       {
         id: "soft-baby-doll",
-        name: "Soft baby doll with accessories",
-        image: "",
+        name: "Baby doll with bathrobe and spare outfit",
+        image: "images/gifts/soft-baby-doll.jpg",
         claimed: false,
       },
       {
