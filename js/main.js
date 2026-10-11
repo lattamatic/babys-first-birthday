@@ -17,8 +17,9 @@ function monthId(month) {
   return `month-${String(month).padStart(2, "0")}`;
 }
 
-function thumbPath(imagePath) {
-  return imagePath.replace("/story/", "/story/thumbs/");
+// Each photo has a transparent head-only cutout in images/story/heads/ (same name, .png).
+function headPath(imagePath) {
+  return imagePath.replace("/story/", "/story/heads/").replace(/\.jpg$/, ".png");
 }
 
 function renderHero() {
@@ -56,10 +57,10 @@ function renderStory() {
     stripLink.href = `#${id}`;
     stripLink.setAttribute("aria-label", monthLabel(chapter.month));
     const stripImg = el("img");
-    stripImg.src = thumbPath(chapter.image);
+    stripImg.src = headPath(chapter.image);
     stripImg.alt = "";
-    stripImg.width = 84;
-    stripImg.height = 84;
+    stripImg.width = 96;
+    stripImg.height = 96;
     stripImg.loading = "lazy";
     stripLink.appendChild(stripImg);
     stripLink.appendChild(el("span", "", chapter.month === 12 ? "1 yr" : String(chapter.month)));
@@ -94,7 +95,6 @@ function renderStory() {
     text.appendChild(number);
     text.appendChild(el("p", "chapter-month", monthLabel(chapter.month)));
     text.appendChild(el("h3", "chapter-title", chapter.title));
-    text.appendChild(el("p", "chapter-caption", chapter.caption));
 
     item.appendChild(figure);
     item.appendChild(text);
@@ -108,7 +108,6 @@ function renderFinale(section, chapter, id) {
   section.hidden = false;
   section.querySelector(".chapter-month").textContent = monthLabel(chapter.month);
   section.querySelector(".finale-title").textContent = chapter.title;
-  section.querySelector(".finale-caption").textContent = chapter.caption;
   const img = section.querySelector(".finale-photo img");
   img.src = chapter.image;
   img.alt = chapter.alt;

@@ -5,8 +5,8 @@ built so it's easy to edit now and turn into "Chapter 2" for next year's birthda
 
 ## Files you'll actually touch
 
-- **`content.js`** — all the text: baby's name, party details, the photo story
-  captions, and the gift list. Edit this file for 95% of updates.
+- **`content.js`** — all the text: baby's name, party details, the photo
+  story titles, and the gift list. Edit this file for 95% of updates.
 - **`apps-script/Code.gs`** — the small script behind the "I've chosen this"
   buttons. It lives in your Google Sheet, not on the website (see below).
 - **`images/story/`** — the web-ready photos used by the story (see below).
@@ -30,18 +30,19 @@ updates.
 
 The story on the homepage is the `story.chapters` list in `content.js` — one
 entry per photo, in order (`month` 0 = newborn, 12 = first birthday). Each one
-has a title, a caption, the photo, and a `focus` that says which part of the
-photo stays in frame when it's cropped to a portrait card ("50% 0%" keeps the
-top, "50% 100%" keeps the bottom). Clicking a photo opens the full uncropped
-version. The captions are drafts — rewrite them freely.
+has a title, the photo, an `alt` description for screen readers (not shown on
+the page), and a `focus` that says which part of the photo stays in frame when
+it's cropped to a portrait card ("50% 0%" keeps the top, "50% 100%" keeps the
+bottom). Clicking a photo opens the full uncropped version.
 
 **Swapping or adding a photo:** the originals are phone photos (many are HEIC,
 which most browsers can't show, and they carry camera metadata like model and
 timestamps). Don't drop those straight into the site. Ask Claude to prepare
 them, or convert/resize them to JPEGs (about 900px wide) with metadata removed,
-save them in `images/story/`, and add a tight, square face-only crop (about
-200px) to `images/story/thumbs/` with the same file name for the row of faces at
-the top.
+save them in `images/story/`, and add a transparent PNG of just her head (no
+background, no body) to `images/story/heads/` with the same file name but ending
+in `.png`, for the row of faces at the top. The head cutouts need a background-
+removal tool, so it's easiest to ask Claude to make them.
 
 The chapter marked `featured: true` (the first-birthday photo) isn't a small
 card like the others: it gets its own section at the end and is shown large and

@@ -34,7 +34,6 @@ const CONTENT = {
   },
 
   // One chapter per photo, in order. `month` 0 = newborn, 12 = her first birthday.
-  // Captions are drafts written from what's in each photo — rewrite freely.
   story: {
     title: "Her First Year, Month by Month",
     subtitle: "From her very first day to her first birthday. Tap a face to jump to that month.",
@@ -42,7 +41,6 @@ const CONTENT = {
       {
         month: 0,
         title: "Hello, world",
-        caption: "A tiny pink hat, a hand tucked under her chin, and a very serious first look at everything.",
         image: "images/story/month-00.jpg",
         focus: "50% 35%",
         alt: "Newborn in a pink knit hat, swaddled in a star-print sleep sack, one hand tucked under her chin.",
@@ -50,7 +48,6 @@ const CONTENT = {
       {
         month: 1,
         title: "Wide-eyed in purple silk",
-        caption: "One month in, all dressed up in silk and gold, and already taking in every detail of the room.",
         image: "images/story/month-01.jpg",
         focus: "50% 0%",
         alt: "Baby in a purple silk dress with gold borders and a ruffled purple bonnet, looking wide-eyed at the camera.",
@@ -58,7 +55,6 @@ const CONTENT = {
       {
         month: 2,
         title: "Lace, legs and a little sign",
-        caption: "Cream lace, a soft headband, and the \"2 months\" sign by her side. Kicking back like she owns the bed.",
         image: "images/story/month-02.jpg",
         focus: "50% 60%",
         alt: "Baby in a cream lace outfit and headband lying on a white blanket beside a wooden '2 months' sign.",
@@ -66,7 +62,6 @@ const CONTENT = {
       {
         month: 3,
         title: "Bonjour, Paris",
-        caption: "Pom-pom hat, fluffy white coat, and the Eiffel Tower photobombing from behind.",
         image: "images/story/month-03.jpg",
         focus: "50% 0%",
         alt: "Baby in a pink pom-pom hat and white fleece coat with the Eiffel Tower behind her.",
@@ -74,7 +69,6 @@ const CONTENT = {
       {
         month: 4,
         title: "The first big smiles",
-        caption: "A yellow bonnet and a grin that took over the whole photo.",
         image: "images/story/month-04.jpg",
         focus: "50% 0%",
         alt: "Baby grinning in a yellow bonnet and pink bunny-print top, sitting on a lap.",
@@ -82,7 +76,6 @@ const CONTENT = {
       {
         month: 5,
         title: "Silk, gold and big dark eyes",
-        caption: "Dressed up again, held close, and watching everything that was going on around her.",
         image: "images/story/month-05.jpg",
         focus: "50% 0%",
         alt: "Close-up of baby in a purple silk top and red silk skirt, held in someone's hands.",
@@ -90,7 +83,6 @@ const CONTENT = {
       {
         month: 6,
         title: "A balloon party for one",
-        caption: "Flat on her back in a sea of balloons, laughing at all of it. Half a year of pure joy.",
         image: "images/story/month-06.jpg",
         focus: "50% 30%",
         alt: "Baby in a black dress with a gold flower, laughing while lying among white and blue balloons.",
@@ -98,7 +90,6 @@ const CONTENT = {
       {
         month: 7,
         title: "Sitting up like a pro",
-        caption: "Sparkly tutu, the \"7 months\" sign, and sitting up all on her own.",
         image: "images/story/month-07.jpg",
         focus: "50% 60%",
         alt: "Baby sitting up in a purple sparkly tutu dress with a wooden '7 months' sign, in front of a coral backdrop.",
@@ -106,7 +97,6 @@ const CONTENT = {
       {
         month: 8,
         title: "Her little princess moment",
-        caption: "Cream tulle, a flower headband, and a very curious look at whoever was holding the camera.",
         image: "images/story/month-08.jpg",
         focus: "50% 40%",
         alt: "Baby sitting on the floor in a cream tulle dress with a white flower headband.",
@@ -114,7 +104,6 @@ const CONTENT = {
       {
         month: 9,
         title: "Standing on her own two feet",
-        caption: "Bag over her shoulder, ready to head out, while someone behind her waves hello.",
         image: "images/story/month-09.jpg",
         focus: "50% 30%",
         alt: "Baby standing in an orange ikat dress with a canvas bag over her shoulder, with an adult's hands waving behind her.",
@@ -122,7 +111,6 @@ const CONTENT = {
       {
         month: 10,
         title: "Making a splash",
-        caption: "Swim cap on, fruit-print swimsuit, and two tiny teeth showing in the biggest grin.",
         image: "images/story/month-10.jpg",
         focus: "50% 10%",
         alt: "Baby grinning in a black swim cap and orange fruit-print swimsuit, held up by two adult hands at a pool.",
@@ -130,7 +118,6 @@ const CONTENT = {
       {
         month: 11,
         title: "Playground adventures",
-        caption: "Riding a spring frog like she's done it a hundred times, ponytail and all.",
         image: "images/story/month-11.jpg",
         focus: "50% 70%",
         alt: "Baby in a pink jacket riding a green spring toy in a playground, smiling at the camera.",
@@ -139,7 +126,6 @@ const CONTENT = {
         month: 12,
         featured: true, // shown large, full width, after the other months
         title: "One whole year",
-        caption: "Twelve months of photos up on the wall, one very big smile in the high chair. Happy first birthday, Bhuvi Tara!",
         image: "images/story/year-1.jpg",
         alt: "Bhuvi Tara sitting in a pink high chair in front of her birthday backdrop: pastel and unicorn balloons, an 'It's My Birthday' banner, twelve monthly photos on the wall, and a giant gold number 1.",
       },
