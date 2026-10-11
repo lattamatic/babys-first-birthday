@@ -153,15 +153,15 @@ const CONTENT = {
 
     items: [
       {
-        id: "ikea-uppsta-stacking-cups",
+        id: "stacking-cups",
         name: "Jeu de gobelets, multicolore",
-        image: "images/gifts/ikea-uppsta-stacking-cups.jpg",
+        image: "images/gifts/stacking-cups.jpg",
         claimed: false,
       },
       {
-        id: "ikea-uppsta-stacking-rings",
+        id: "stacking-rings",
         name: "Pyramide d'anneaux, multicolore",
-        image: "images/gifts/ikea-uppsta-stacking-rings.jpg",
+        image: "images/gifts/stacking-rings.jpg",
         claimed: false,
       },
       {
@@ -219,9 +219,9 @@ const CONTENT = {
         claimed: false,
       },
       {
-        id: "bieco-hedgehog-xylophone",
+        id: "hedgehog-xylophone",
         name: "Hedgehog baby xylophone",
-        image: "images/gifts/bieco-hedgehog-xylophone.jpg",
+        image: "images/gifts/hedgehog-xylophone.jpg",
         claimed: false,
       },
       {
@@ -243,27 +243,27 @@ const CONTENT = {
         claimed: false,
       },
       {
-        id: "oxybul-6-sensory-balls",
+        id: "sensory-balls",
         name: "6 balles sensorielles",
-        image: "images/gifts/oxybul-6-sensory-balls.jpg",
+        image: "images/gifts/sensory-balls.jpg",
         claimed: false,
       },
       {
-        id: "ikea-uppsta-push-walker",
+        id: "push-walker",
         name: "Chariot de marche, vert",
-        image: "images/gifts/ikea-uppsta-push-walker.jpg",
+        image: "images/gifts/push-walker.jpg",
         claimed: false,
       },
       {
-        id: "goplus-pikler-triangle-arch-ramp",
+        id: "triangle-arch-ramp",
         name: "7-in-1 Montessori triangle & arch with slide and ramp",
-        image: "images/gifts/goplus-pikler-triangle-arch-ramp.jpg",
+        image: "images/gifts/triangle-arch-ramp.jpg",
         claimed: false,
       },
       {
-        id: "oxybul-popup-house-tunnel",
+        id: "popup-house-tunnel",
         name: "Maison pop up avec tunnel",
-        image: "images/gifts/oxybul-popup-house-tunnel.jpg",
+        image: "images/gifts/popup-house-tunnel.jpg",
         claimed: false,
       },
       {
@@ -273,15 +273,15 @@ const CONTENT = {
         claimed: false,
       },
       {
-        id: "ikea-duktig-mini-kitchen",
+        id: "mini-kitchen",
         name: "Mini cuisine, bouleau",
-        image: "images/gifts/ikea-duktig-mini-kitchen.jpg",
+        image: "images/gifts/mini-kitchen.jpg",
         claimed: false,
       },
       {
-        id: "nene-rainbow-stacker",
+        id: "rainbow-stacker",
         name: "Wooden Montessori rainbow stacker, 3 in 1",
-        image: "images/gifts/nene-rainbow-stacker.jpg",
+        image: "images/gifts/rainbow-stacker.jpg",
         claimed: false,
       },
     ],
