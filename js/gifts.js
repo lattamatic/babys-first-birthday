@@ -157,7 +157,7 @@ form.addEventListener("submit", async (event) => {
       claims.taken.add(item.id);
       closeClaimDialog();
       renderGrid();
-      showStatus(`Thank you, ${name}! "${item.name}" is marked as taken. You can undo it here at any time.`);
+      showStatus(`Thank you, ${name}! "${item.name}" is marked as taken. You can release it here at any time.`);
     } else if (result.error === "taken") {
       claims.taken.add(item.id);
       closeClaimDialog();
@@ -248,9 +248,9 @@ function renderGrid() {
 
     if (ENDPOINT && item.id) {
       if (mine) {
-        const undo = el("button", "gift-undo", "Undo");
+        const undo = el("button", "gift-undo", "Release this gift");
         undo.type = "button";
-        undo.setAttribute("aria-label", `Undo: release ${item.name}`);
+        undo.setAttribute("aria-label", `Release this gift: ${item.name}`);
         undo.addEventListener("click", () => undoChoice(item));
         actions.appendChild(undo);
       } else if (!taken) {

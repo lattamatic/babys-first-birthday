@@ -73,7 +73,7 @@ but don't reuse them for anything public or commercial.
 ## Letting guests choose a gift ("I've chosen this")
 
 Guests tap **I've chosen this**, type their name, and that gift shows as
-**Taken** for everyone else. They can **Undo** from the same phone. Choices are
+**Taken** for everyone else. They can **Release this gift** from the same phone. Choices are
 stored in a Google Sheet you own. Only gift IDs are public; names stay in the
 sheet. If two families tap the same gift at once, the second one is politely
 told it was just taken.
@@ -100,7 +100,7 @@ minutes):
    **Deploy**. Copy the **Web app URL** (it ends in `/exec`).
 6. Paste that URL into `content.js` as `gifts.claims.endpoint`, then publish.
 7. Test it: choose a gift on the live page and check that a row appears in the
-   sheet, then press **Undo** and check that it disappears.
+   sheet, then press **Release this gift** and check that it disappears.
 
 **Day to day you do nothing.** Choices appear in the sheet by themselves. To
 release a gift for someone, delete its row. **Keep the sheet private**: the
