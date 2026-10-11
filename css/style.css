@@ -257,9 +257,9 @@ h1, h2 {
 .story-strip {
   list-style: none;
   margin: 28px 0 0;
-  padding: 4px 4px 14px;
+  padding: 6px 4px 14px;
   display: flex;
-  gap: 10px;
+  gap: 14px;
   overflow-x: auto;
 }
 
@@ -269,28 +269,41 @@ h1, h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   text-decoration: none;
   color: var(--ink);
   font-family: "Baloo 2", cursive;
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 }
 
 .story-strip img {
   display: block;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: 84px;
+  height: 84px;
+  border-radius: 22px;
   object-fit: cover;
   border: 3px solid var(--white);
-  box-shadow: 0 4px 10px var(--shadow);
+  box-shadow: 0 6px 14px var(--shadow);
 }
 
 .story-strip a:hover img { box-shadow: 0 0 0 3px var(--coral); }
+.story-strip a:focus-visible img { outline: 3px solid var(--sky); outline-offset: 2px; }
 
 @media (min-width: 900px) {
-  .story-strip { justify-content: center; overflow: visible; }
+  .story-strip {
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: visible;
+    row-gap: 16px;
+    max-width: 700px; /* seven tiles per row, so 13 wrap as 7 + 6 */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .story-strip img { width: 72px; height: 72px; border-radius: 20px; }
 }
 
 .story {
@@ -447,6 +460,59 @@ h1, h2 {
   }
 
   .chapter-number { font-size: 3.6rem; }
+}
+
+/* ---------- Finale: the first-birthday photo, shown big ---------- */
+
+.finale {
+  --accent: var(--pink);
+  padding: 56px 0 72px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--cream) 0%, #ffe9ee 45%, #fff1d6 100%);
+}
+
+.finale-text { padding: 0 20px; }
+
+.finale .chapter-month { margin: 0; }
+
+.finale-title {
+  margin: 12px 0 0;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.finale-photo { margin: 28px auto 0; }
+
+.finale-photo img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 96vh;
+  margin: 0 auto;
+  border: 8px solid var(--white);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(58, 46, 57, 0.25);
+}
+
+.finale-caption {
+  max-width: 560px;
+  margin: 24px auto 0;
+  padding: 0 20px;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .finale { padding: 40px 0 56px; }
+  .finale-photo img {
+    width: 100%;
+    max-height: none;
+    border-width: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
 }
 
 /* ---------- Gifts ---------- */

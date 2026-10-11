@@ -10,29 +10,8 @@ function el(tag, className, text) {
 
 const state = {
   category: "All",
-  priceBand: "All",
   hideClaimed: false,
 };
-
-// Price bands are derived from the free-text `price` field (e.g. "~20-35€",
-// "€41", "varies") rather than a separate field — so adding a new gift to
-// content.js never requires maintaining a band by hand.
-const PRICE_BANDS = [
-  { label: "Under €12", max: 12 },
-  { label: "€12–19", max: 20 },
-  { label: "€20–39", max: 40 },
-  { label: "€40–79", max: 80 },
-  { label: "€80–149", max: 150 },
-  { label: "€150+", max: Infinity },
-];
-
-function getPriceBand(priceStr) {
-  const numbers = (priceStr.match(/\d+(\.\d+)?/g) || []).map(Number);
-  if (numbers.length === 0) return "Varies";
-  const value = numbers.length === 1 ? numbers[0] : (numbers[0] + numbers[1]) / 2;
-  const band = PRICE_BANDS.find((b) => value < b.max);
-  return band.label;
-}
 
 // Appends your Amazon Associates tag to amazon.* links, if one is set in
 // content.js. Every other retailer link is returned unchanged.
@@ -257,12 +236,6 @@ function getCategories() {
   return ["All", ...Array.from(categories)];
 }
 
-function getPriceBandOptions() {
-  const present = new Set(CONTENT.gifts.items.map((item) => getPriceBand(item.price)));
-  const ordered = [...PRICE_BANDS.map((b) => b.label), "Varies"].filter((label) => present.has(label));
-  return ["All", ...ordered];
-}
-
 function renderFilterGroup(containerId, options, stateKey) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
@@ -282,7 +255,6 @@ function renderFilterGroup(containerId, options, stateKey) {
 
 function renderFilters() {
   renderFilterGroup("category-filters", getCategories(), "category");
-  renderFilterGroup("price-filters", getPriceBandOptions(), "priceBand");
 }
 
 function renderGrid() {
@@ -291,9 +263,8 @@ function renderGrid() {
   grid.innerHTML = "";
 
   const items = CONTENT.gifts.items.filter((item) => {
-    if (state.hideClaimed && isTaken(item) && !isMine(item)) return false;
+    if (state.hideClaimed && isTaken(item)) return false;
     if (state.category !== "All" && item.category !== state.category) return false;
-    if (state.priceBand !== "All" && getPriceBand(item.price) !== state.priceBand) return false;
     return true;
   });
 
@@ -350,8 +321,10 @@ function renderGrid() {
   });
 }
 
-document.getElementById("hide-claimed-checkbox").addEventListener("change", (e) => {
-  state.hideClaimed = e.target.checked;
+const hideTakenBox = document.getElementById("hide-claimed-checkbox");
+state.hideClaimed = hideTakenBox.checked;
+hideTakenBox.addEventListener("change", () => {
+  state.hideClaimed = hideTakenBox.checked;
   renderGrid();
 });
 

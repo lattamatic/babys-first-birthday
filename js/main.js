@@ -46,6 +46,7 @@ function renderStory() {
 
   const strip = document.getElementById("story-strip");
   const list = document.getElementById("story-list");
+  const finale = document.getElementById("story-finale");
 
   CONTENT.story.chapters.forEach((chapter) => {
     const id = monthId(chapter.month);
@@ -57,13 +58,18 @@ function renderStory() {
     const stripImg = el("img");
     stripImg.src = thumbPath(chapter.image);
     stripImg.alt = "";
-    stripImg.width = 64;
-    stripImg.height = 64;
+    stripImg.width = 84;
+    stripImg.height = 84;
     stripImg.loading = "lazy";
     stripLink.appendChild(stripImg);
     stripLink.appendChild(el("span", "", chapter.month === 12 ? "1 yr" : String(chapter.month)));
     stripItem.appendChild(stripLink);
     strip.appendChild(stripItem);
+
+    if (chapter.featured) {
+      renderFinale(finale, chapter, id);
+      return;
+    }
 
     const item = el("li", "chapter");
     item.id = id;
@@ -94,6 +100,18 @@ function renderStory() {
     item.appendChild(text);
     list.appendChild(item);
   });
+}
+
+// The first-birthday photo gets a section of its own, shown large and uncropped.
+function renderFinale(section, chapter, id) {
+  section.id = id;
+  section.hidden = false;
+  section.querySelector(".chapter-month").textContent = monthLabel(chapter.month);
+  section.querySelector(".finale-title").textContent = chapter.title;
+  section.querySelector(".finale-caption").textContent = chapter.caption;
+  const img = section.querySelector(".finale-photo img");
+  img.src = chapter.image;
+  img.alt = chapter.alt;
 }
 
 function renderGifts() {

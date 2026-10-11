@@ -15,9 +15,9 @@ const CONTENT = {
 
   party: {
     headline: "We're turning ONE!",
-    date: "Saturday, Month Day, Year",
-    time: "2:00 PM",
-    location: "10 Rue Jean Baptiste Charcot, Massy",
+    date: "Sunday, 18 October 2026",
+    time: "3:00 PM, with dinner to follow",
+    location: "Massy",
     note: "Come celebrate with us — all we ask is you bring your happiest self.",
   },
 
@@ -137,11 +137,11 @@ const CONTENT = {
       },
       {
         month: 12,
+        featured: true, // shown large, full width, after the other months
         title: "One whole year",
-        caption: "A twirly red dress and a quick look back over her shoulder. Just like that, she's one.",
-        image: "images/story/month-12.jpg",
-        focus: "50% 45%",
-        alt: "Baby in a red tulle party dress with a topknot, walking across a wooden floor.",
+        caption: "Twelve months of photos up on the wall, one very big smile in the high chair. Happy first birthday, Bhuvi Tara!",
+        image: "images/story/year-1.jpg",
+        alt: "Bhuvi Tara sitting in a pink high chair in front of her birthday backdrop: pastel and unicorn balloons, an 'It's My Birthday' banner, twelve monthly photos on the wall, and a giant gold number 1.",
       },
     ],
   },

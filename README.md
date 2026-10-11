@@ -23,7 +23,7 @@ updates.
 - **`index.html`** — the main party page (hero, the month-by-month photo
   story, and a short gifts teaser that links onward).
 - **`gifts.html`** — the full gift list, with filter chips by category and a
-  "hide claimed items" toggle. This is its own page so it can grow past a
+  "hide gifts that are already taken" toggle. This is its own page so it can grow past a
   handful of items without cluttering the homepage.
 
 ## The photo story
@@ -39,8 +39,13 @@ version. The captions are drafts — rewrite them freely.
 which most browsers can't show, and they carry camera metadata like model and
 timestamps). Don't drop those straight into the site. Ask Claude to prepare
 them, or convert/resize them to JPEGs (about 900px wide) with metadata removed,
-save them in `images/story/`, and add a small square face crop to
-`images/story/thumbs/` with the same file name for the strip at the top.
+save them in `images/story/`, and add a tight, square face-only crop (about
+200px) to `images/story/thumbs/` with the same file name for the row of faces at
+the top.
+
+The chapter marked `featured: true` (the first-birthday photo) isn't a small
+card like the others: it gets its own section at the end and is shown large and
+uncropped, edge to edge on a phone.
 
 The original HEIC/JPG files in `images/` are ignored by git on purpose, so only
 the cleaned copies ever get published.
