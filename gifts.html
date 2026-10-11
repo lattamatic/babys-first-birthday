@@ -6,7 +6,7 @@
 <title>Gift List</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=4" />
+<link rel="stylesheet" href="css/style.css?v=6" />
 </head>
 <body>
 
@@ -34,8 +34,10 @@
 
         <label class="claimed-toggle">
           <input type="checkbox" id="hide-claimed-checkbox" />
-          Hide items already claimed
+          Hide gifts that are already taken
         </label>
+
+        <p class="gift-status" id="gift-status" role="status" tabindex="-1" hidden></p>
 
         <div class="gift-grid" id="gift-grid"></div>
         <p class="empty-state" id="empty-state" hidden>No gifts match this filter — try another category.</p>
@@ -45,12 +47,37 @@
     </section>
   </main>
 
+  <dialog class="claim-dialog" id="claim-dialog" aria-labelledby="claim-title">
+    <form method="dialog" id="claim-form" novalidate>
+      <h2 id="claim-title">Lovely choice!</h2>
+      <p class="claim-item" id="claim-item"></p>
+      <p class="claim-explain">We'll mark it as taken so nobody else buys the same one. Only we can see your name.</p>
+
+      <label class="claim-field">
+        <span>Your name</span>
+        <input type="text" id="claim-name" maxlength="60" autocomplete="given-name" required />
+      </label>
+
+      <label class="claim-field" id="claim-code-field" hidden>
+        <span>Party code <small>(it's on your invitation)</small></span>
+        <input type="text" id="claim-code" autocomplete="off" autocapitalize="off" />
+      </label>
+
+      <p class="claim-error" id="claim-error" role="alert" hidden></p>
+
+      <div class="claim-actions">
+        <button type="button" class="claim-cancel" id="claim-cancel">Cancel</button>
+        <button type="submit" class="claim-confirm" id="claim-confirm">I've chosen this</button>
+      </div>
+    </form>
+  </dialog>
+
   <footer class="site-footer">
     <p id="footer-chapter"></p>
     <p class="footer-sub">Made with love, one chapter at a time.</p>
   </footer>
 
-  <script src="content.js?v=3"></script>
-  <script src="js/gifts.js?v=2"></script>
+  <script src="content.js?v=5"></script>
+  <script src="js/gifts.js?v=3"></script>
 </body>
 </html>

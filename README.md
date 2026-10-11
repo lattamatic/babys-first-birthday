@@ -7,6 +7,8 @@ built so it's easy to edit now and turn into "Chapter 2" for next year's birthda
 
 - **`content.js`** — all the text: baby's name, party details, the photo story
   captions, and the gift list. Edit this file for 95% of updates.
+- **`apps-script/Code.gs`** — the small script behind the "I've chosen this"
+  buttons. It lives in your Google Sheet, not on the website (see below).
 - **`images/story/`** — the web-ready photos used by the story (see below).
 - **`videos/`** — empty for now; the story is photos only.
 - **`gift-ideas.md`** — a broader brainstorm list (more ideas than are on the
@@ -50,20 +52,54 @@ France. Instead, `content.js` has a `gifts.items` array — real products with
 real links to French/EU retailers (Etsy France, Nature & Découvertes,
 Vertbaudet, Amazon.fr, etc.).
 
-**Claiming is manual, on purpose — no backend, no accounts:**
-1. A guest messages you saying "I'll get the wooden xylophone."
-2. You open `content.js`, find that item, and set:
-   ```js
-   claimed: true,
-   claimedBy: "Aunt Claire",   // optional
-   ```
-3. Save and redeploy (see below). The site now shows it as claimed and greys
-   it out so no one else buys the same thing.
+Each gift needs an `id` (lowercase letters, numbers and hyphens, like
+`wooden-xylophone`), `name`, `description`, `price`, `store`, `url` and
+`category`. **Never change a gift's `id` once guests start choosing** — it's how
+a choice stays attached to the right gift. A new `category` value automatically
+creates a new filter chip on `gifts.html`.
 
-Add or remove items from the `items` array the same way — each one just needs
-`name`, `description`, `price`, `store`, `url`, `category`, and `claimed`.
-Adding a new `category` value automatically creates a new filter chip on
-`gifts.html` — nothing else to wire up.
+## Letting guests choose a gift ("I've chosen this")
+
+Guests tap **I've chosen this**, type their name, and that gift shows as
+**Taken** for everyone else. They can **Undo** from the same phone. Choices are
+stored in a Google Sheet you own. Only gift IDs are public; names stay in the
+sheet. If two families tap the same gift at once, the second one is politely
+told it was just taken.
+
+While `gifts.claims.endpoint` in `content.js` is blank, none of this shows and
+the list works as a plain list. To turn it on, do this **once** (about 10
+minutes):
+
+1. Go to [sheets.google.com](https://sheets.google.com) and create a blank
+   spreadsheet. Name it something like "Baby gift choices".
+2. In the sheet, open **Extensions > Apps Script**. Delete the starter code,
+   then paste in the whole of `apps-script/Code.gs` from this project.
+3. *(Optional)* Near the top, set a party code: `const PARTY_CODE = "HappyOne";`
+   Put the same code on the invitation. Guests type it once and their phone
+   remembers it. Leave it `""` for no code. It keeps strangers who find the link
+   from choosing gifts.
+4. Click the save icon. In the function menu at the top, pick **setup** and
+   click **Run**. Google asks you to authorize it: choose your account, and if it
+   says the app isn't verified click **Advanced > Go to (project name)** (that's
+   normal for your own script), then **Allow**. A **Claims** tab now exists in
+   the sheet.
+5. Click **Deploy > New deployment**. Click the gear next to "Select type" and
+   pick **Web app**. Set **Execute as: Me** and **Who has access: Anyone**, then
+   **Deploy**. Copy the **Web app URL** (it ends in `/exec`).
+6. Paste that URL into `content.js` as `gifts.claims.endpoint`, then publish.
+7. Test it: choose a gift on the live page and check that a row appears in the
+   sheet, then press **Undo** and check that it disappears.
+
+**Day to day you do nothing.** Choices appear in the sheet by themselves. To
+release a gift for someone, delete its row. **Keep the sheet private**: the
+"Undo key" column lets whoever holds a key release that gift.
+
+If you ever edit the script (including the party code), redeploy it: **Deploy >
+Manage deployments > pencil icon > Version: New version > Deploy**. The URL
+stays the same.
+
+If you'd rather mark a gift taken yourself, setting `claimed: true` on it in
+`content.js` still works and shows it as Taken.
 
 ## Affiliate links (optional)
 

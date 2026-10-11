@@ -15,6 +15,8 @@
 
 * { box-sizing: border-box; }
 
+[hidden] { display: none !important; }
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -498,6 +500,11 @@ h1, h2 {
   background: #9b8b95;
 }
 
+.gift-badge-mine {
+  background: var(--sky);
+  color: var(--ink);
+}
+
 .gift-name {
   font-family: "Baloo 2", cursive;
   font-weight: 700;
@@ -519,8 +526,6 @@ h1, h2 {
 }
 
 .gift-link {
-  margin-top: 10px;
-  align-self: flex-start;
   color: var(--ink);
   font-weight: 700;
   text-decoration: none;
@@ -646,6 +651,147 @@ h1, h2 {
   color: #6b5c66;
   font-weight: 600;
 }
+
+/* ---------- Choosing a gift ---------- */
+
+.gift-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-top: 10px;
+}
+
+.gift-choose,
+.gift-undo,
+.claim-confirm,
+.claim-cancel {
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.gift-choose {
+  padding: 7px 16px;
+  border: 2px solid var(--coral);
+  background: var(--white);
+  color: var(--ink);
+}
+
+.gift-choose:hover { background: var(--coral); color: var(--white); }
+
+.gift-undo {
+  padding: 7px 16px;
+  border: 2px solid #b8a9b2;
+  background: transparent;
+  color: var(--ink);
+}
+
+.gift-undo:hover { border-color: var(--ink); }
+
+.gift-choose:focus-visible,
+.gift-undo:focus-visible,
+.claim-confirm:focus-visible,
+.claim-cancel:focus-visible,
+.claim-field input:focus-visible,
+.filter-chip:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 2px;
+}
+
+.gift-status {
+  max-width: 640px;
+  margin: 8px auto 0;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: #e8f7ee;
+  border: 2px solid var(--mint);
+  font-weight: 600;
+  text-align: center;
+}
+
+.claim-dialog {
+  width: min(92vw, 420px);
+  padding: 28px 26px 24px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 24px 60px rgba(58, 46, 57, 0.35);
+}
+
+.claim-dialog::backdrop { background: rgba(58, 46, 57, 0.5); }
+
+.claim-dialog h2 { font-size: 1.6rem; }
+
+.claim-item {
+  margin: 6px 0 0;
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  color: var(--coral);
+}
+
+.claim-explain {
+  margin: 8px 0 18px;
+  font-size: 0.92rem;
+  color: #6b5c66;
+}
+
+.claim-field { display: block; margin-bottom: 14px; }
+
+.claim-field span {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.claim-field small { font-weight: 500; color: #6b5c66; }
+
+.claim-field input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 2px solid #e6d9d0;
+  border-radius: 14px;
+  background: var(--cream);
+  font: inherit;
+  color: var(--ink);
+}
+
+.claim-error {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fde8ec;
+  border: 2px solid var(--pink);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.claim-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.claim-cancel {
+  padding: 9px 18px;
+  border: 2px solid #b8a9b2;
+  background: transparent;
+  color: var(--ink);
+}
+
+.claim-confirm {
+  padding: 9px 20px;
+  border: 2px solid var(--coral);
+  background: var(--coral);
+  color: var(--white);
+}
+
+.claim-confirm:disabled { opacity: 0.6; cursor: wait; }
 
 /* ---------- Footer ---------- */
 

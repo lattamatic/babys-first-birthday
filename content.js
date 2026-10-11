@@ -150,9 +150,10 @@ const CONTENT = {
     This is our own "pseudo-registry" — real items with real links, since
     Amazon Registry / Babylist etc. aren't available in France.
 
-    Claiming is manual (no live guest-facing "claim" button): when someone
-    tells you they're getting an item, set claimed: true (and optionally
-    claimedBy) and redeploy the site. That's it — no backend needed.
+    Guests mark gifts as taken with the "I've chosen this" button (see
+    `claims` below and the README). `claimed: true` on a gift is a manual
+    override that shows it as Taken without any button. Never change a gift's
+    `id` once guests have started choosing.
   */
   gifts: {
     intro:
@@ -178,8 +179,18 @@ const CONTENT = {
       amazonAssociateTag: "", // e.g. "yourtag-21"
     },
 
+    /*
+      Live "I've chosen this" buttons. Paste the web app URL from the Google
+      Sheet setup here (see README). While this is blank the buttons are
+      hidden and the list works exactly as before.
+    */
+    claims: {
+      endpoint: "",
+    },
+
     items: [
       {
+        id: "personalized-wooden-name-puzzle",
         name: "Personalized wooden name puzzle",
         description: "A keepsake-y first toy with her name spelled out in wood — lots of French Etsy sellers make these to order.",
         price: "~20–35€",
@@ -187,9 +198,9 @@ const CONTENT = {
         url: "https://www.etsy.com/fr/market/puzzle_pr%C3%A9nom_en_bois",
         category: "Keepsake",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "wooden-activity-cube",
         name: "Wooden activity cube",
         description: "Five sides of shapes, beads, and gears to keep busy hands occupied — a classic 1st-birthday gift.",
         price: "~50–60€",
@@ -197,9 +208,9 @@ const CONTENT = {
         url: "https://www.natureetdecouvertes.com/enfant/jouets-eveil/jouets-enfilement/cube-d-activite-bois-bebe-kidkraft-91718850",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "rechargeable-bubble-machine",
         name: "Rechargeable bubble machine",
         description: "For a baby who lights up around people — outdoor bubbles are an instant crowd-pleaser at parties.",
         price: "~15–20€",
@@ -207,9 +218,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/Machine-Automatique-Rechargeable-Soufflante-Souffleur/dp/B09Y1CVKQ4",
         category: "Outdoor",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "wooden-push-walker",
         name: "Wooden push walker",
         description: "She's on the verge of walking — this gives her something steady to push around.",
         price: "~40–70€",
@@ -217,9 +228,9 @@ const CONTENT = {
         url: "https://www.vertbaudet.fr/lnd/jouet-trotteur-bois.htm",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "wooden-xylophone",
         name: "Wooden xylophone",
         description: "Real notes, small mallet, big noise — great for a baby who loves music and attention.",
         price: "~20–30€",
@@ -227,9 +238,9 @@ const CONTENT = {
         url: "https://www.natureetdecouvertes.com/enfant/jouets-eveil/instruments-musique/xylophone-en-bois-pour-bebe-91191360",
         category: "Music",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "ride-on-toy-porteur",
         name: "Ride-on toy (porteur)",
         description: "No pedals needed yet — just scoot-and-go, good for indoors or the garden.",
         price: "~30–60€",
@@ -237,9 +248,9 @@ const CONTENT = {
         url: "https://www.vertbaudet.fr/jouet/premier-age/bascules-chariots-de-marche-trotteurs-et-porteurs.htm",
         category: "Outdoor",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "fabric-sensory-book",
         name: "Fabric sensory book",
         description: "Soft, chewable, washable — a good quiet-time or travel toy.",
         price: "~15–25€",
@@ -247,9 +258,9 @@ const CONTENT = {
         url: "https://www.natureetdecouvertes.com/v/livre-bebe",
         category: "Books",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "hand-footprint-keepsake-kit",
         name: "Hand & footprint keepsake kit",
         description: "A clean, no-mess ink kit to capture her tiny hand and foot from this year.",
         price: "~20–30€",
@@ -257,9 +268,9 @@ const CONTENT = {
         url: "https://www.keeplove.fr/products/kit-empreinte-bebe",
         category: "Keepsake",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "cite-des-sciences-family-pass-experience-gift",
         name: "Cité des Sciences family pass (experience gift)",
         description: "Unlimited access to the Cité des enfants in Paris for a year — a gift of outings, not stuff.",
         price: "varies",
@@ -267,11 +278,11 @@ const CONTENT = {
         url: "https://www.cite-sciences.fr/fr/infos-pratiques/abonnement-pass",
         category: "Experience",
         claimed: false,
-        claimedBy: "",
       },
 
       // --- Imported from Baby_1st_Birthday_Gift_Registry_France.xlsx ---
       {
+        id: "la-petite-bibliotheque-de-mes-1-an",
         name: "La petite bibliothèque de mes 1 an",
         description: "Books / language · Ages 1–3 years",
         price: "€16.95",
@@ -279,9 +290,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/s?k=La+petite+biblioth%C3%A8que+de+mes+1+an",
         category: "Books",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "l-album-de-ma-premiere-annee",
         name: "L'album de ma première année",
         description: "Memory / keepsake · Ages 1+",
         price: "€15.23",
@@ -289,9 +300,9 @@ const CONTENT = {
         url: "https://www.fnac.com/SearchResult/ResultList.aspx?Search=album+premiere+annee+bebe",
         category: "Keepsake",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "vertbaudet-children-s-hooded-bath-towel",
         name: "Vertbaudet children's hooded bath towel",
         description: "Practical · Ages 1–3 years",
         price: "€12.99",
@@ -299,9 +310,9 @@ const CONTENT = {
         url: "https://www.laredoute.fr/search.aspx?text=serviette+bain+enfant+vertbaudet",
         category: "Practical",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "silicone-baby-bib",
         name: "Silicone baby bib",
         description: "Mealtime · Ages 1–3 years",
         price: "~€10-15",
@@ -309,9 +320,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/s?k=bavoir+silicone+b%C3%A9b%C3%A9",
         category: "Practical",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "cubika-wooden-shape-sorting-toy",
         name: "Cubika wooden shape-sorting toy",
         description: "Fine motor / shapes · Ages 1–3 years",
         price: "€13.81",
@@ -319,9 +330,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/Cubika-15337-Couleurs-construction-enfants/dp/B09XQWGPNG",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "disney-mes-premieres-histoires-12-books",
         name: "Disney Mes Premières Histoires – 12 books",
         description: "Books / language · Ages 1–3 years",
         price: "€14.95",
@@ -329,9 +340,9 @@ const CONTENT = {
         url: "https://www.fnac.com/SearchResult/ResultList.aspx?Search=Disney+Mes+Premieres+Histoires+12+livres",
         category: "Books",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "3-in-1-montessori-threading-sorting-stacking-toy",
         name: "3-in-1 Montessori threading / sorting / stacking toy",
         description: "Fine motor / cognitive · Ages 2–4 years",
         price: "€18.99",
@@ -339,9 +350,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/s?k=Guopai+Jouet+Montessori+3+en+1+perles+bois",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "montessori-fishing-sorting-toy",
         name: "Montessori fishing & sorting toy",
         description: "Fine motor / coordination · Ages 1–3 years",
         price: "€21.99",
@@ -349,9 +360,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/s?k=hahaland+Jouet+B%C3%A9b%C3%A9+1+an+p%C3%AAche+Montessori",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "hahaland-montessori-busy-book",
         name: "Hahaland Montessori busy book",
         description: "Fine motor / sensory · Ages 1–3 years",
         price: "€20.59",
@@ -359,9 +370,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/s?k=hahaland+Busy+Book+Montessori+1+an",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "kids-concept-wooden-guitar-red",
         name: "Kids Concept wooden guitar (red)",
         description: "Music / pretend play · Ages 2–5 years",
         price: "€31.00",
@@ -369,9 +380,9 @@ const CONTENT = {
         url: "https://www.smallable.com/fr/product/guitare-en-bois-rouge-kid-s-concept-199660",
         category: "Music",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "lego-duplo-deluxe-brick-box-10914",
         name: "LEGO DUPLO Deluxe Brick Box 10914",
         description: "Construction / creativity · Ages 1.5–5 years",
         price: "€33.99",
@@ -379,9 +390,9 @@ const CONTENT = {
         url: "https://www.cdiscount.com/juniors/jeux-de-construction/lego-duplo-10914-deluxe-brick-box/f-12064-leg10914.html",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "xxl-foldable-anti-shock-play-mat-superbe-bebe",
         name: "XXL foldable anti-shock play mat (Superbe Bébé)",
         description: "Gross motor / play space · Ages 1–4 years",
         price: "€34.90",
@@ -389,9 +400,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/SUPERBE-BEBE-Enfant-Pliable-Reversible/dp/B0DV5C6HH2",
         category: "Practical",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "kitchen-corner-wooden-play-kitchen",
         name: "Kitchen Corner wooden play kitchen",
         description: "Pretend play / language · Ages 2–5 years",
         price: "€36.99",
@@ -399,9 +410,9 @@ const CONTENT = {
         url: "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-d%27imitation/cuisine-et-alimentation/cuisine-en-bois/p/",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "maileg-penguin-stuffed-toy",
         name: "Maileg Penguin (stuffed toy)",
         description: "Comfort / imaginative play · Ages 1–5 years",
         price: "€38.00",
@@ -409,9 +420,9 @@ const CONTENT = {
         url: "https://maileg.com/search?q=Penguin",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "montessori-counting-colour-sorting-game",
         name: "Montessori counting & colour sorting game",
         description: "Early maths / fine motor · Ages 3–6 years",
         price: "€27.99",
@@ -419,9 +430,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/s?k=Broytain+Jeux+Montessori+comptage+tri+couleurs",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "5-piece-bamboo-baby-bath-towel-set",
         name: "5-piece bamboo baby bath towel set",
         description: "Practical · Ages 1–3 years",
         price: "€19.99",
@@ -429,9 +440,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/s?k=ensemble+serviettes+bain+bebe+bambou+5+pieces",
         category: "Practical",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "decathlon-2-in-1-evolving-ride-on-balance-toy",
         name: "Decathlon 2-in-1 evolving ride-on / balance toy",
         description: "Gross motor / balance · Ages 1–3 years",
         price: "€59.99",
@@ -439,9 +450,9 @@ const CONTENT = {
         url: "https://www.decathlon.fr/p/porteur-bebe-evolutif-2en1-draisienne-1-3-ans-bleu/_/R-p-323522",
         category: "Outdoor",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "10-inch-balance-bike-adjustable-saddle",
         name: "10-inch balance bike, adjustable saddle",
         description: "Balance / gross motor · Ages 2+ years",
         price: "€49.90",
@@ -449,9 +460,9 @@ const CONTENT = {
         url: "https://www.decathlon.fr/p/mp/draisienne-10-pouces-enfant-2-ans-poids-leger/60a2f432-fbc0-4f72-8640-27dd4fa613c8/c5",
         category: "Outdoor",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "banwood-tricycle-red",
         name: "Banwood tricycle (red)",
         description: "Gross motor / outdoor · Ages 2–4 years",
         price: "~€165-195",
@@ -459,9 +470,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/Banwood-Trike-Rood/dp/B086R4QPY6",
         category: "Outdoor",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "banwood-trike-blue",
         name: "Banwood Trike (blue)",
         description: "Gross motor / outdoor · Ages 2–5 years",
         price: "~€165-195",
@@ -469,9 +480,9 @@ const CONTENT = {
         url: "https://www.smallable.com/en/product/metal-and-woode-tricycle-blue-banwood-189397",
         category: "Outdoor",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "petit-picotin-roger-toy-basket",
         name: "Petit Picotin Roger toy basket",
         description: "Storage / room · Ages 1+",
         price: "€69.00",
@@ -479,9 +490,9 @@ const CONTENT = {
         url: "https://petitpicotin.com/search?q=Roger+toy+basket",
         category: "Practical",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "zu-first-year-baby-memory-book",
         name: "Zü first-year baby memory book",
         description: "Memory / keepsake · Ages 1+",
         price: "€45.00",
@@ -489,9 +500,9 @@ const CONTENT = {
         url: "https://www.natureetdecouvertes.com/search?query=livre+souvenirs+bebe+premiere+annee",
         category: "Keepsake",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "ecoiffier-ma-1ere-cuisine",
         name: "Ecoiffier Ma 1ère Cuisine",
         description: "Pretend play · Ages 1.5–4 years",
         price: "€19.95",
@@ -499,9 +510,9 @@ const CONTENT = {
         url: "https://www.carrefour.fr/s?q=Ecoiffier+Ma+1ere+Cuisine",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "le-grand-livre-de-mes-1-an",
         name: "Le grand livre de mes 1 an",
         description: "Books / language · Ages 1–3 years",
         price: "~€12.76",
@@ -509,9 +520,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/grand-livre-mes-Imagier-d%C3%A9veil/dp/2324029189",
         category: "Books",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "birth-book-three-little-rabbits-moulin-roty",
         name: "Birth book / Three Little Rabbits – Moulin Roty",
         description: "Books / keepsake · Ages 1+",
         price: "€24.90",
@@ -519,9 +530,9 @@ const CONTENT = {
         url: "https://www.king-jouet.com/recherche?search=trois+petits+lapins+moulin+roty",
         category: "Keepsake",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "kids-concept-wooden-guitar-mustard-yellow",
         name: "Kids Concept wooden guitar (mustard yellow)",
         description: "Music / coordination · Ages 2–5 years",
         price: "€31.00",
@@ -529,9 +540,9 @@ const CONTENT = {
         url: "https://www.smallable.com/fr/product/guitare-en-bois-jaune-moutarde-kid-s-concept-199656",
         category: "Music",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "baby-swim-float-with-upf-50-canopy",
         name: "Baby swim float with UPF 50+ canopy",
         description: "Water / outdoor · Ages 6–36 months",
         price: "€29.99",
@@ -539,9 +550,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/s?k=MYCARBON+bouee+bebe+UPF+50",
         category: "Outdoor",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "lego-duplo-large-brick-set",
         name: "LEGO DUPLO large brick set",
         description: "Construction / creativity · Ages 1.5–5 years",
         price: "€50+",
@@ -549,9 +560,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/s?k=LEGO+DUPLO+1+an+grand+coffret",
         category: "Toys",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "banwood-tricycle-cream",
         name: "Banwood tricycle (cream)",
         description: "Outdoor / gross motor · Ages 2–5 years",
         price: "~€165-195",
@@ -559,9 +570,9 @@ const CONTENT = {
         url: "https://www.amazon.fr/Banwood-Trike-Cream/dp/B086R4JSWS",
         category: "Outdoor",
         claimed: false,
-        claimedBy: "",
       },
       {
+        id: "personalised-first-year-baby-memory-book",
         name: "Personalised first-year baby memory book",
         description: "Memory / keepsake · Ages 1+",
         price: "~€20-25",
@@ -569,7 +580,6 @@ const CONTENT = {
         url: "https://www.etsy.com/fr/market/livre_souvenir_b%C3%A9b%C3%A9",
         category: "Keepsake",
         claimed: false,
-        claimedBy: "",
       },
     ],
     fallbackNote:
