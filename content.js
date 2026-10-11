@@ -1,12 +1,10 @@
 /*
   EDIT ME — this is the only file you should need to touch to update the site's text and photos.
-  Everything below is placeholder content. Replace it with the real details.
 
-  To add real photos/videos:
-    1. Drop image files into the /images folder, video files into /videos.
-    2. In the `gallery` array below, change type to "photo" or "video" and
-       set `src` to the filename, e.g. src: "images/first-steps.jpg".
-    3. Leave `src` empty ("") to keep showing a placeholder card.
+  To change a photo in the story: put the image in /images/story, then change
+  `image` on that chapter. `focus` says which part of the photo stays in frame
+  when it's cropped to a portrait card ("50% 0%" = keep the top, "50% 100%" =
+  keep the bottom). The "view full photo" link always shows the whole picture.
 */
 
 const CONTENT = {
@@ -29,53 +27,124 @@ const CONTENT = {
     "a hard day instantly better. This year has been a joy, and we can't wait " +
     "to celebrate her with the people who've loved her along the way.",
 
-  milestones: [
-    {
-      month: "Month 1",
-      title: "Hello, world!",
-      description: "Placeholder — swap in her actual first milestone.",
-      icon: "🌞",
-    },
-    {
-      month: "Month 3",
-      title: "First real smile",
-      description: "Placeholder — the moment she started smiling on purpose.",
-      icon: "😊",
-    },
-    {
-      month: "Month 6",
-      title: "Sitting up",
-      description: "Placeholder — first time she sat up unassisted.",
-      icon: "🧸",
-    },
-    {
-      month: "Month 8",
-      title: "First giggle fit",
-      description: "Placeholder — the milestone that made everyone laugh too.",
-      icon: "😂",
-    },
-    {
-      month: "Month 10",
-      title: "First steps",
-      description: "Placeholder — wobbly, brave, and unstoppable.",
-      icon: "👣",
-    },
-    {
-      month: "Month 12",
-      title: "One whole year!",
-      description: "Placeholder — the party this site is all about.",
-      icon: "🎂",
-    },
-  ],
+  hero: {
+    image: "images/story/month-11.jpg",
+    focus: "50% 70%",
+    alt: "Baby in a pink jacket riding a green spring toy in a playground, smiling at the camera.",
+  },
 
-  gallery: [
-    { type: "photo", caption: "Placeholder — swap in a real photo", src: "" },
-    { type: "video", caption: "Placeholder — swap in a real video", src: "" },
-    { type: "photo", caption: "Placeholder — swap in a real photo", src: "" },
-    { type: "photo", caption: "Placeholder — swap in a real photo", src: "" },
-    { type: "video", caption: "Placeholder — swap in a real video", src: "" },
-    { type: "photo", caption: "Placeholder — swap in a real photo", src: "" },
-  ],
+  // One chapter per photo, in order. `month` 0 = newborn, 12 = her first birthday.
+  // Captions are drafts written from what's in each photo — rewrite freely.
+  story: {
+    title: "Her First Year, Month by Month",
+    subtitle: "From her very first day to her first birthday. Tap a face to jump to that month.",
+    chapters: [
+      {
+        month: 0,
+        title: "Hello, world",
+        caption: "A tiny pink hat, a hand tucked under her chin, and a very serious first look at everything.",
+        image: "images/story/month-00.jpg",
+        focus: "50% 35%",
+        alt: "Newborn in a pink knit hat, swaddled in a star-print sleep sack, one hand tucked under her chin.",
+      },
+      {
+        month: 1,
+        title: "Wide-eyed in purple silk",
+        caption: "One month in, all dressed up in silk and gold, and already taking in every detail of the room.",
+        image: "images/story/month-01.jpg",
+        focus: "50% 0%",
+        alt: "Baby in a purple silk dress with gold borders and a ruffled purple bonnet, looking wide-eyed at the camera.",
+      },
+      {
+        month: 2,
+        title: "Lace, legs and a little sign",
+        caption: "Cream lace, a soft headband, and the \"2 months\" sign by her side. Kicking back like she owns the bed.",
+        image: "images/story/month-02.jpg",
+        focus: "50% 60%",
+        alt: "Baby in a cream lace outfit and headband lying on a white blanket beside a wooden '2 months' sign.",
+      },
+      {
+        month: 3,
+        title: "Bonjour, Paris",
+        caption: "Pom-pom hat, fluffy white coat, and the Eiffel Tower photobombing from behind.",
+        image: "images/story/month-03.jpg",
+        focus: "50% 0%",
+        alt: "Baby in a pink pom-pom hat and white fleece coat with the Eiffel Tower behind her.",
+      },
+      {
+        month: 4,
+        title: "The first big smiles",
+        caption: "A yellow bonnet and a grin that took over the whole photo.",
+        image: "images/story/month-04.jpg",
+        focus: "50% 0%",
+        alt: "Baby grinning in a yellow bonnet and pink bunny-print top, sitting on a lap.",
+      },
+      {
+        month: 5,
+        title: "Silk, gold and big dark eyes",
+        caption: "Dressed up again, held close, and watching everything that was going on around her.",
+        image: "images/story/month-05.jpg",
+        focus: "50% 0%",
+        alt: "Close-up of baby in a purple silk top and red silk skirt, held in someone's hands.",
+      },
+      {
+        month: 6,
+        title: "A balloon party for one",
+        caption: "Flat on her back in a sea of balloons, laughing at all of it. Half a year of pure joy.",
+        image: "images/story/month-06.jpg",
+        focus: "50% 30%",
+        alt: "Baby in a black dress with a gold flower, laughing while lying among white and blue balloons.",
+      },
+      {
+        month: 7,
+        title: "Sitting up like a pro",
+        caption: "Sparkly tutu, the \"7 months\" sign, and sitting up all on her own.",
+        image: "images/story/month-07.jpg",
+        focus: "50% 60%",
+        alt: "Baby sitting up in a purple sparkly tutu dress with a wooden '7 months' sign, in front of a coral backdrop.",
+      },
+      {
+        month: 8,
+        title: "Her little princess moment",
+        caption: "Cream tulle, a flower headband, and a very curious look at whoever was holding the camera.",
+        image: "images/story/month-08.jpg",
+        focus: "50% 40%",
+        alt: "Baby sitting on the floor in a cream tulle dress with a white flower headband.",
+      },
+      {
+        month: 9,
+        title: "Standing on her own two feet",
+        caption: "Bag over her shoulder, ready to head out, while someone behind her waves hello.",
+        image: "images/story/month-09.jpg",
+        focus: "50% 30%",
+        alt: "Baby standing in an orange ikat dress with a canvas bag over her shoulder, with an adult's hands waving behind her.",
+      },
+      {
+        month: 10,
+        title: "Making a splash",
+        caption: "Swim cap on, fruit-print swimsuit, and two tiny teeth showing in the biggest grin.",
+        image: "images/story/month-10.jpg",
+        focus: "50% 10%",
+        alt: "Baby grinning in a black swim cap and orange fruit-print swimsuit, held up by two adult hands at a pool.",
+      },
+      {
+        month: 11,
+        title: "Playground adventures",
+        caption: "Riding a spring frog like she's done it a hundred times, ponytail and all.",
+        image: "images/story/month-11.jpg",
+        focus: "50% 70%",
+        alt: "Baby in a pink jacket riding a green spring toy in a playground, smiling at the camera.",
+      },
+      {
+        month: 12,
+        title: "One whole year",
+        caption: "A twirly red dress and a quick look back over her shoulder. Just like that, she's one.",
+        image: "images/story/month-12.jpg",
+        focus: "50% 45%",
+        alt: "Baby in a red tulle party dress with a topknot, walking across a wooden floor.",
+      },
+    ],
+  },
 
   /*
     This is our own "pseudo-registry" — real items with real links, since

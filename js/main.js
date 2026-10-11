@@ -7,6 +7,20 @@ function el(tag, className, text) {
   return node;
 }
 
+function monthLabel(month) {
+  if (month === 0) return "Newborn";
+  if (month === 12) return "Year 1";
+  return `Month ${month}`;
+}
+
+function monthId(month) {
+  return `month-${String(month).padStart(2, "0")}`;
+}
+
+function thumbPath(imagePath) {
+  return imagePath.replace("/story/", "/story/thumbs/");
+}
+
 function renderHero() {
   document.getElementById("chapter-label").textContent = CONTENT.chapter.label;
   document.getElementById("hero-headline").textContent = CONTENT.party.headline;
@@ -15,57 +29,70 @@ function renderHero() {
   document.getElementById("party-time").textContent = CONTENT.party.time;
   document.getElementById("party-location").textContent = CONTENT.party.location;
   document.getElementById("party-note").textContent = CONTENT.party.note;
+
+  const photo = document.getElementById("hero-photo");
+  photo.src = CONTENT.hero.image;
+  photo.alt = CONTENT.hero.alt;
+  photo.style.objectPosition = CONTENT.hero.focus;
 }
 
 function renderAbout() {
   document.getElementById("about-blurb").textContent = CONTENT.aboutBlurb;
 }
 
-function renderTimeline() {
-  const list = document.getElementById("timeline");
-  CONTENT.milestones.forEach((m) => {
-    const item = el("li", "timeline-item");
+function renderStory() {
+  document.getElementById("story-title").textContent = CONTENT.story.title;
+  document.getElementById("story-subtitle").textContent = CONTENT.story.subtitle;
 
-    const icon = el("div", "timeline-icon", m.icon || "🎈");
+  const strip = document.getElementById("story-strip");
+  const list = document.getElementById("story-list");
 
-    const content = el("div", "timeline-content");
-    content.appendChild(el("p", "timeline-month", m.month));
-    content.appendChild(el("p", "timeline-title", m.title));
-    content.appendChild(el("p", "timeline-description", m.description));
+  CONTENT.story.chapters.forEach((chapter) => {
+    const id = monthId(chapter.month);
 
-    item.appendChild(icon);
-    item.appendChild(content);
+    const stripItem = el("li");
+    const stripLink = el("a");
+    stripLink.href = `#${id}`;
+    stripLink.setAttribute("aria-label", monthLabel(chapter.month));
+    const stripImg = el("img");
+    stripImg.src = thumbPath(chapter.image);
+    stripImg.alt = "";
+    stripImg.width = 64;
+    stripImg.height = 64;
+    stripImg.loading = "lazy";
+    stripLink.appendChild(stripImg);
+    stripLink.appendChild(el("span", "", chapter.month === 12 ? "1 yr" : String(chapter.month)));
+    stripItem.appendChild(stripLink);
+    strip.appendChild(stripItem);
+
+    const item = el("li", "chapter");
+    item.id = id;
+
+    const figure = el("figure", "chapter-photo");
+    const fullLink = el("a");
+    fullLink.href = chapter.image;
+    fullLink.target = "_blank";
+    fullLink.rel = "noopener";
+    fullLink.setAttribute("aria-label", `View the full photo: ${monthLabel(chapter.month)}`);
+    const img = el("img");
+    img.src = chapter.image;
+    img.alt = chapter.alt;
+    img.loading = "lazy";
+    img.style.objectPosition = chapter.focus;
+    fullLink.appendChild(img);
+    figure.appendChild(fullLink);
+
+    const text = el("div", "chapter-text");
+    const number = el("p", "chapter-number", String(chapter.month).padStart(2, "0"));
+    number.setAttribute("aria-hidden", "true");
+    text.appendChild(number);
+    text.appendChild(el("p", "chapter-month", monthLabel(chapter.month)));
+    text.appendChild(el("h3", "chapter-title", chapter.title));
+    text.appendChild(el("p", "chapter-caption", chapter.caption));
+
+    item.appendChild(figure);
+    item.appendChild(text);
     list.appendChild(item);
-  });
-}
-
-function renderGallery() {
-  const grid = document.getElementById("gallery-grid");
-  CONTENT.gallery.forEach((item) => {
-    const card = el("div", "gallery-card");
-
-    if (item.src) {
-      if (item.type === "video") {
-        const video = document.createElement("video");
-        video.src = item.src;
-        video.controls = true;
-        card.appendChild(video);
-      } else {
-        const img = document.createElement("img");
-        img.src = item.src;
-        img.alt = item.caption || "";
-        card.appendChild(img);
-      }
-    } else {
-      const placeholder = el("div", "gallery-placeholder");
-      placeholder.appendChild(
-        el("div", "gallery-placeholder-icon", item.type === "video" ? "🎬" : "📷")
-      );
-      placeholder.appendChild(el("p", "gallery-caption", item.caption));
-      card.appendChild(placeholder);
-    }
-
-    grid.appendChild(card);
   });
 }
 
@@ -79,7 +106,6 @@ function renderFooter() {
 
 renderHero();
 renderAbout();
-renderTimeline();
-renderGallery();
+renderStory();
 renderGifts();
 renderFooter();

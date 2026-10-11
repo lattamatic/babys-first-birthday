@@ -6,26 +6,36 @@
 <title>Her First Birthday</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=3" />
+<link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
 
   <div class="confetti-bar" aria-hidden="true"></div>
 
-  <p class="version-switch"><a href="index-animated.html">✨ Try the animated version →</a></p>
-
   <header class="hero" id="top">
     <div class="hero-inner">
-      <p class="chapter-label" id="chapter-label"></p>
-      <h1 id="hero-headline">We're turning ONE!</h1>
-      <p class="hero-name" id="hero-name">Baby's Name</p>
-      <div class="party-card" id="party-card">
-        <div class="party-row"><span class="party-icon">📅</span><span id="party-date"></span></div>
-        <div class="party-row"><span class="party-icon">🕑</span><span id="party-time"></span></div>
-        <div class="party-row"><span class="party-icon">📍</span><span id="party-location"></span></div>
+      <div class="hero-photo">
+        <div class="hero-photo-frame">
+          <img id="hero-photo" alt="" width="900" height="1125" fetchpriority="high" />
+        </div>
+        <div class="hero-badge" aria-hidden="true">
+          <span class="hero-badge-number">1</span>
+          <span class="hero-badge-label">year</span>
+        </div>
       </div>
-      <p class="party-note" id="party-note"></p>
-      <a href="gifts.html" class="cta-button">Gift Ideas &amp; Registry</a>
+
+      <div class="hero-text">
+        <p class="chapter-label" id="chapter-label"></p>
+        <h1 id="hero-headline">We're turning ONE!</h1>
+        <p class="hero-name" id="hero-name">Baby's Name</p>
+        <div class="party-card" id="party-card">
+          <div class="party-row"><span class="party-icon">📅</span><span id="party-date"></span></div>
+          <div class="party-row"><span class="party-icon">🕑</span><span id="party-time"></span></div>
+          <div class="party-row"><span class="party-icon">📍</span><span id="party-location"></span></div>
+        </div>
+        <p class="party-note" id="party-note"></p>
+        <a href="gifts.html" class="cta-button">Gift Ideas &amp; Registry</a>
+      </div>
     </div>
     <div class="hero-blob" aria-hidden="true"></div>
   </header>
@@ -39,19 +49,14 @@
       </div>
     </section>
 
-    <section class="section timeline-section">
-      <div class="section-inner">
-        <h2>Her First Year</h2>
-        <p class="section-subtitle">A few of the moments that made this year unforgettable.</p>
-        <ol class="timeline" id="timeline"></ol>
-      </div>
-    </section>
-
-    <section class="section gallery-section">
-      <div class="section-inner">
-        <h2>Moments &amp; Memories</h2>
-        <p class="section-subtitle">Photos and videos from her first year.</p>
-        <div class="gallery-grid" id="gallery-grid"></div>
+    <section class="section story-section" id="story">
+      <div class="section-inner section-inner-wide">
+        <h2 id="story-title"></h2>
+        <p class="section-subtitle" id="story-subtitle"></p>
+        <nav aria-label="Jump to a month">
+          <ol class="story-strip" id="story-strip"></ol>
+        </nav>
+        <ol class="story" id="story-list"></ol>
       </div>
     </section>
 
@@ -70,7 +75,7 @@
     <p class="footer-sub">Made with love, one chapter at a time.</p>
   </footer>
 
-  <script src="content.js?v=2"></script>
-  <script src="js/main.js?v=2"></script>
+  <script src="content.js?v=3"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>

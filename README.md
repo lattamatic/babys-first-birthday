@@ -1,14 +1,14 @@
 # Baby's First Birthday Website
 
-A single-page site: milestones, a photo/video gallery, and gift/registry links —
+A party page with a month-by-month photo story and a filterable gift list —
 built so it's easy to edit now and turn into "Chapter 2" for next year's birthday.
 
 ## Files you'll actually touch
 
-- **`content.js`** — all the text: baby's name, party details, milestones, and
-  the gift list. Edit this file for 95% of updates.
-- **`images/`** — drop real photos here.
-- **`videos/`** — drop real video clips here.
+- **`content.js`** — all the text: baby's name, party details, the photo story
+  captions, and the gift list. Edit this file for 95% of updates.
+- **`images/story/`** — the web-ready photos used by the story (see below).
+- **`videos/`** — empty for now; the story is photos only.
 - **`gift-ideas.md`** — a broader brainstorm list (more ideas than are on the
   site), for your own reference or to share directly if someone asks.
 
@@ -18,20 +18,30 @@ updates.
 
 ## Pages
 
-- **`index.html`** — the main party page (hero, milestones, gallery, and a
-  short gifts teaser that links onward).
+- **`index.html`** — the main party page (hero, the month-by-month photo
+  story, and a short gifts teaser that links onward).
 - **`gifts.html`** — the full gift list, with filter chips by category and a
   "hide claimed items" toggle. This is its own page so it can grow past a
   handful of items without cluttering the homepage.
 
-## Adding a real photo or video
+## The photo story
 
-1. Copy the file into `images/` (photos) or `videos/` (videos).
-2. Open `content.js`, find the `gallery` array, and update one entry:
-   ```js
-   { type: "photo", caption: "Her first steps!", src: "images/first-steps.jpg" }
-   ```
-3. Save and refresh the page.
+The story on the homepage is the `story.chapters` list in `content.js` — one
+entry per photo, in order (`month` 0 = newborn, 12 = first birthday). Each one
+has a title, a caption, the photo, and a `focus` that says which part of the
+photo stays in frame when it's cropped to a portrait card ("50% 0%" keeps the
+top, "50% 100%" keeps the bottom). Clicking a photo opens the full uncropped
+version. The captions are drafts — rewrite them freely.
+
+**Swapping or adding a photo:** the originals are phone photos (many are HEIC,
+which most browsers can't show, and they carry camera metadata like model and
+timestamps). Don't drop those straight into the site. Ask Claude to prepare
+them, or convert/resize them to JPEGs (about 900px wide) with metadata removed,
+save them in `images/story/`, and add a small square face crop to
+`images/story/thumbs/` with the same file name for the strip at the top.
+
+The original HEIC/JPG files in `images/` are ignored by git on purpose, so only
+the cleaned copies ever get published.
 
 ## The gift list (pseudo-registry)
 
@@ -90,6 +100,6 @@ Any of these give you a free link you can text or email to guests.
 
 When birthday #2 comes around:
 1. Duplicate this whole folder (e.g. `babys-website-year-2`).
-2. Update `content.js` with the new year's milestones, gallery, and party details.
+2. Update `content.js` with the new year's photo story and party details.
 3. Optionally add a small nav on the hero linking back to last year's chapter,
    once both are published, so the site becomes a running memory book.
