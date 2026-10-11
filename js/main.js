@@ -22,7 +22,6 @@ function thumbPath(imagePath) {
 }
 
 function renderHero() {
-  document.getElementById("chapter-label").textContent = CONTENT.chapter.label;
   document.getElementById("hero-script").textContent = CONTENT.hero.script;
   document.getElementById("hero-caps").textContent = CONTENT.hero.caps;
   document.getElementById("party-date").textContent = CONTENT.party.date;
@@ -58,8 +57,8 @@ function renderStory() {
     const stripImg = el("img");
     stripImg.src = thumbPath(chapter.image);
     stripImg.alt = "";
-    stripImg.width = 84;
-    stripImg.height = 84;
+    stripImg.width = 64;
+    stripImg.height = 64;
     stripImg.loading = "lazy";
     stripLink.appendChild(stripImg);
     stripLink.appendChild(el("span", "", chapter.month === 12 ? "1 yr" : String(chapter.month)));
@@ -112,12 +111,7 @@ function renderGifts() {
   document.getElementById("gifts-intro").textContent = CONTENT.gifts.intro;
 }
 
-function renderFooter() {
-  document.getElementById("footer-chapter").textContent = CONTENT.chapter.label;
-}
-
 renderHero();
 renderAbout();
 renderStory();
 renderGifts();
-renderFooter();

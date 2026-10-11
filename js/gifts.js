@@ -1,4 +1,4 @@
-// Renders the filterable gift list (gifts.html) from CONTENT (see content.js),
+// Renders the gift list (gifts.html) from CONTENT (see content.js),
 // and handles the live "I've chosen this" buttons when a claims endpoint is set.
 
 function el(tag, className, text) {
@@ -9,26 +9,8 @@ function el(tag, className, text) {
 }
 
 const state = {
-  category: "All",
   hideClaimed: false,
 };
-
-// Appends your Amazon Associates tag to amazon.* links, if one is set in
-// content.js. Every other retailer link is returned unchanged.
-function withAffiliateTag(url) {
-  const tag = CONTENT.gifts.affiliate && CONTENT.gifts.affiliate.amazonAssociateTag;
-  if (!tag) return url;
-  try {
-    const parsed = new URL(url);
-    if (parsed.hostname.includes("amazon.")) {
-      parsed.searchParams.set("tag", tag);
-      return parsed.toString();
-    }
-  } catch (e) {
-    // Not a valid absolute URL — return as-is.
-  }
-  return url;
-}
 
 // ---------- Live claims (Google Sheet backend, see apps-script/Code.gs) ----------
 
@@ -218,43 +200,7 @@ async function undoChoice(item) {
 // ---------- Page ----------
 
 function renderStaticText() {
-  document.getElementById("chapter-label").textContent = CONTENT.chapter.label;
   document.getElementById("gifts-intro").textContent = CONTENT.gifts.intro;
-  document.getElementById("gifts-ideas-note").textContent = CONTENT.gifts.fallbackNote;
-  document.getElementById("footer-chapter").textContent = CONTENT.chapter.label;
-
-  const hasAffiliateTag = Boolean(CONTENT.gifts.affiliate && CONTENT.gifts.affiliate.amazonAssociateTag);
-  const disclosure = document.getElementById("affiliate-disclosure");
-  if (hasAffiliateTag) {
-    disclosure.textContent = "As an Amazon Associate, we may earn a small commission from qualifying purchases made through the Amazon links below — at no extra cost to you.";
-    disclosure.hidden = false;
-  }
-}
-
-function getCategories() {
-  const categories = new Set(CONTENT.gifts.items.map((item) => item.category));
-  return ["All", ...Array.from(categories)];
-}
-
-function renderFilterGroup(containerId, options, stateKey) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
-
-  options.forEach((option) => {
-    const chip = el("button", "filter-chip", option);
-    chip.type = "button";
-    if (option === state[stateKey]) chip.classList.add("filter-chip-active");
-    chip.addEventListener("click", () => {
-      state[stateKey] = option;
-      renderFilters();
-      renderGrid();
-    });
-    container.appendChild(chip);
-  });
-}
-
-function renderFilters() {
-  renderFilterGroup("category-filters", getCategories(), "category");
 }
 
 function renderGrid() {
@@ -262,11 +208,7 @@ function renderGrid() {
   const emptyState = document.getElementById("empty-state");
   grid.innerHTML = "";
 
-  const items = CONTENT.gifts.items.filter((item) => {
-    if (state.hideClaimed && isTaken(item)) return false;
-    if (state.category !== "All" && item.category !== state.category) return false;
-    return true;
-  });
+  const items = CONTENT.gifts.items.filter((item) => !(state.hideClaimed && isTaken(item)));
 
   emptyState.hidden = items.length > 0;
 
@@ -275,6 +217,18 @@ function renderGrid() {
     const mine = taken && isMine(item);
 
     const card = el("div", "gift-card" + (taken && !mine ? " gift-card-claimed" : ""));
+
+    const photo = el("div", "gift-photo");
+    if (item.image) {
+      const img = el("img");
+      img.src = item.image;
+      img.alt = item.name;
+      img.loading = "lazy";
+      photo.appendChild(img);
+    } else {
+      photo.classList.add("gift-photo-empty");
+      photo.appendChild(el("span", "gift-photo-soon", "Photo coming soon"));
+    }
 
     let badgeClass = "gift-badge";
     let badgeText = "Available";
@@ -285,20 +239,12 @@ function renderGrid() {
       badgeClass += " gift-badge-claimed";
       badgeText = "Taken";
     }
-    card.appendChild(el("span", badgeClass, badgeText));
+    photo.appendChild(el("span", badgeClass, badgeText));
+    card.appendChild(photo);
 
-    card.appendChild(el("span", "gift-category", item.category));
     card.appendChild(el("p", "gift-name", item.name));
-    card.appendChild(el("p", "gift-description", item.description));
-    card.appendChild(el("p", "gift-meta", `${item.price} · ${item.store}`));
 
     const actions = el("div", "gift-actions");
-
-    const link = el("a", "gift-link", taken && !mine ? "View item" : "View & buy →");
-    link.href = withAffiliateTag(item.url);
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    actions.appendChild(link);
 
     if (ENDPOINT && item.id) {
       if (mine) {
@@ -334,6 +280,5 @@ document.addEventListener("visibilitychange", () => {
 });
 
 renderStaticText();
-renderFilters();
 renderGrid();
 refreshClaims();

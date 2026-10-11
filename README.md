@@ -10,6 +10,7 @@ built so it's easy to edit now and turn into "Chapter 2" for next year's birthda
 - **`apps-script/Code.gs`** — the small script behind the "I've chosen this"
   buttons. It lives in your Google Sheet, not on the website (see below).
 - **`images/story/`** — the web-ready photos used by the story (see below).
+- **`images/gifts/`** — one photo per gift for the gift list (see below).
 - **`videos/`** — empty for now; the story is photos only.
 - **`gift-ideas.md`** — a broader brainstorm list (more ideas than are on the
   site), for your own reference or to share directly if someone asks.
@@ -22,9 +23,9 @@ updates.
 
 - **`index.html`** — the main party page (hero, the month-by-month photo
   story, and a short gifts teaser that links onward).
-- **`gifts.html`** — the full gift list, with filter chips by category and a
-  "hide gifts that are already taken" toggle. This is its own page so it can grow past a
-  handful of items without cluttering the homepage.
+- **`gifts.html`** — the gift list: a grid of cards, each with a photo and a name
+  guests can search for in any shop, plus an "I've chosen this" button and a "hide
+  gifts that are already taken" toggle.
 
 ## The photo story
 
@@ -50,18 +51,24 @@ uncropped, edge to edge on a phone.
 The original HEIC/JPG files in `images/` are ignored by git on purpose, so only
 the cleaned copies ever get published.
 
-## The gift list (pseudo-registry)
+## The gift list
 
-There's no Amazon Registry / Babylist here since those aren't available in
-France. Instead, `content.js` has a `gifts.items` array — real products with
-real links to French/EU retailers (Etsy France, Nature & Découvertes,
-Vertbaudet, Amazon.fr, etc.).
+There are no shop links on purpose: each card shows a **photo and a name**, and
+guests find the item themselves. The list is `gifts.items` in `content.js`; each
+gift has:
 
-Each gift needs an `id` (lowercase letters, numbers and hyphens, like
-`wooden-xylophone`), `name`, `description`, `price`, `store`, `url` and
-`category`. **Never change a gift's `id` once guests start choosing** — it's how
-a choice stays attached to the right gift. A new `category` value automatically
-creates a new filter chip on `gifts.html`.
+- `id` — lowercase letters, numbers and hyphens (like `wooden-xylophone`).
+  **Never change it once guests start choosing**, it's how a choice stays
+  attached to the right gift.
+- `name` — what the card says (and what guests will search for).
+- `image` — the picture, like `"images/gifts/wooden-xylophone.jpg"`. Leave it
+  `""` to show a "Photo coming soon" tile.
+- `claimed` — `false`, or `true` to mark a gift Taken by hand.
+
+**Adding or replacing a photo:** save a square-ish JPEG (about 700px) in
+`images/gifts/`, named after the gift's `id`, and point `image` at it. Product
+photos belong to the shops that took them, so for a family party site it's fine,
+but don't reuse them for anything public or commercial.
 
 ## Letting guests choose a gift ("I've chosen this")
 
@@ -105,24 +112,6 @@ stays the same.
 
 If you'd rather mark a gift taken yourself, setting `claimed: true` on it in
 `content.js` still works and shows it as Taken.
-
-## Affiliate links (optional)
-
-`content.js` has a `gifts.affiliate.amazonAssociateTag` field, empty by
-default. If you sign up for **Amazon Partenaires** (Amazon Associates France)
-and get a tracking tag, paste it in there — every `amazon.fr` link in the
-gift list will automatically include it, and the site will automatically show
-a small "may earn a commission" disclosure on the gift page (required by
-Amazon's program rules). No tag set = no tracking, no disclosure, links work
-exactly as normal.
-
-Note: signing up for the affiliate program itself is something only you can
-do (it needs your own identity/payment details) — this just wires in your tag
-once you have one. Other French retailers here (Etsy, Vertbaudet, Nature &
-Découvertes) generally run affiliate programs through third-party networks
-(e.g. Awin, Effiliation) rather than a simple URL parameter — if you get
-approved with one of those, replace that item's `url` directly with the
-tracking link they give you.
 
 ## Viewing it locally
 
