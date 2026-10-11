@@ -264,8 +264,9 @@ h1, h2 {
   margin: 28px 0 0;
   padding: 4px 4px 14px;
   display: flex;
-  gap: 10px;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 10px;
 }
 
 .story-strip li { flex: none; }
@@ -294,10 +295,6 @@ h1, h2 {
 
 .story-strip a:hover img { box-shadow: 0 0 0 3px var(--coral); }
 .story-strip a:focus-visible img { outline: 3px solid var(--sky); outline-offset: 2px; }
-
-@media (min-width: 900px) {
-  .story-strip { justify-content: center; overflow: visible; }
-}
 
 .story {
   list-style: none;
