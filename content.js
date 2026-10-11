@@ -9,7 +9,7 @@
 
 const CONTENT = {
   baby: {
-    name: "Baby's Name",
+    name: "Bhuvi Tara",
     birthDate: "Month Day, Year",
   },
 
@@ -17,7 +17,7 @@ const CONTENT = {
     headline: "We're turning ONE!",
     date: "Saturday, Month Day, Year",
     time: "2:00 PM",
-    location: "Address / venue name here",
+    location: "10 Rue Jean Baptiste Charcot, Massy",
     note: "Come celebrate with us — all we ask is you bring your happiest self.",
   },
 
@@ -28,9 +28,9 @@ const CONTENT = {
     "to celebrate her with the people who've loved her along the way.",
 
   hero: {
-    image: "images/story/month-11.jpg",
-    focus: "50% 70%",
-    alt: "Baby in a pink jacket riding a green spring toy in a playground, smiling at the camera.",
+    image: "images/hero.jpg",
+    focus: "50% 0%",
+    alt: "Bhuvi Tara in a bright pink puffer jacket, held up high and grinning in front of the Eiffel Tower lit up at dusk.",
   },
 
   // One chapter per photo, in order. `month` 0 = newborn, 12 = her first birthday.
@@ -185,7 +185,7 @@ const CONTENT = {
       hidden and the list works exactly as before.
     */
     claims: {
-      endpoint: "",
+      endpoint: "https://script.google.com/macros/s/AKfycbyyYdCZo24ox7rKOlNXtHLQWIXhw5NHYoQRsmmK7_IlLYlYW7RrkG22u9iDv8qOUPOv2g/exec",
     },
 
     items: [

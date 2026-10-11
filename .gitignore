@@ -3,3 +3,4 @@
 # Original, un-optimized photos (HEIF/JPG with camera metadata) - only the cleaned copies in images/story/ get published
 images/Month *
 images/Year *
+images/bithday pic.jpeg
