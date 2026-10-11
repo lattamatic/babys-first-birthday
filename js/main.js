@@ -17,15 +17,14 @@ function monthId(month) {
   return `month-${String(month).padStart(2, "0")}`;
 }
 
-// Each photo has a transparent head-only cutout in images/story/heads/ (same name, .png).
-function headPath(imagePath) {
-  return imagePath.replace("/story/", "/story/heads/").replace(/\.jpg$/, ".png");
+function thumbPath(imagePath) {
+  return imagePath.replace("/story/", "/story/thumbs/");
 }
 
 function renderHero() {
   document.getElementById("chapter-label").textContent = CONTENT.chapter.label;
-  document.getElementById("hero-headline").textContent = CONTENT.party.headline;
-  document.getElementById("hero-name").textContent = CONTENT.baby.name;
+  document.getElementById("hero-script").textContent = CONTENT.hero.script;
+  document.getElementById("hero-caps").textContent = CONTENT.hero.caps;
   document.getElementById("party-date").textContent = CONTENT.party.date;
   document.getElementById("party-time").textContent = CONTENT.party.time;
   document.getElementById("party-location").textContent = CONTENT.party.location;
@@ -57,10 +56,10 @@ function renderStory() {
     stripLink.href = `#${id}`;
     stripLink.setAttribute("aria-label", monthLabel(chapter.month));
     const stripImg = el("img");
-    stripImg.src = headPath(chapter.image);
+    stripImg.src = thumbPath(chapter.image);
     stripImg.alt = "";
-    stripImg.width = 96;
-    stripImg.height = 96;
+    stripImg.width = 84;
+    stripImg.height = 84;
     stripImg.loading = "lazy";
     stripLink.appendChild(stripImg);
     stripLink.appendChild(el("span", "", chapter.month === 12 ? "1 yr" : String(chapter.month)));
@@ -76,18 +75,14 @@ function renderStory() {
     item.id = id;
 
     const figure = el("figure", "chapter-photo");
-    const fullLink = el("a");
-    fullLink.href = chapter.image;
-    fullLink.target = "_blank";
-    fullLink.rel = "noopener";
-    fullLink.setAttribute("aria-label", `View the full photo: ${monthLabel(chapter.month)}`);
+    const frame = el("div", "chapter-frame");
     const img = el("img");
     img.src = chapter.image;
     img.alt = chapter.alt;
     img.loading = "lazy";
     img.style.objectPosition = chapter.focus;
-    fullLink.appendChild(img);
-    figure.appendChild(fullLink);
+    frame.appendChild(img);
+    figure.appendChild(frame);
 
     const text = el("div", "chapter-text");
     const number = el("p", "chapter-number", String(chapter.month).padStart(2, "0"));

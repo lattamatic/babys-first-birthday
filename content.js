@@ -4,17 +4,11 @@
   To change a photo in the story: put the image in /images/story, then change
   `image` on that chapter. `focus` says which part of the photo stays in frame
   when it's cropped to a portrait card ("50% 0%" = keep the top, "50% 100%" =
-  keep the bottom). The "view full photo" link always shows the whole picture.
+  keep the bottom).
 */
 
 const CONTENT = {
-  baby: {
-    name: "Bhuvi Tara",
-    birthDate: "Month Day, Year",
-  },
-
   party: {
-    headline: "We're turning ONE!",
     date: "Sunday, 18 October 2026",
     time: "3:00 PM, with dinner to follow",
     location: "Massy",
@@ -28,6 +22,8 @@ const CONTENT = {
     "to celebrate her with the people who've loved her along the way.",
 
   hero: {
+    script: "Bhuvi",       // the big handwritten name
+    caps: "Turns one",     // the small capitals line under it
     image: "images/hero.jpg",
     focus: "50% 0%",
     alt: "Bhuvi Tara in a bright pink puffer jacket, held up high and grinning in front of the Eiffel Tower lit up at dusk.",

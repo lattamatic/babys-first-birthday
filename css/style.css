@@ -7,6 +7,7 @@
   --ink: #3a2e39;
   --cream: #fffaf0;
   --white: #ffffff;
+  --copper: #7b3d0c;
   --shadow: rgba(58, 46, 57, 0.12);
   --radius: 24px;
   --max-width: 880px;
@@ -148,18 +149,31 @@ h1, h2 {
   margin-bottom: 20px;
 }
 
-#hero-headline {
-  font-size: clamp(2.2rem, 6vw, 3.4rem);
-  font-weight: 800;
-  color: var(--ink);
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;   /* "Turns one" tucks under the right end of the name */
+  width: fit-content;
+  margin: 0 auto;
+  color: var(--copper);
+  line-height: 1;
 }
 
-.hero-name {
-  font-family: "Baloo 2", cursive;
-  font-size: clamp(1.4rem, 4vw, 2rem);
+.hero-script {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-size: clamp(4.8rem, 16vw, 7.4rem);
+  line-height: 1.05;
+}
+
+.hero-caps {
+  margin-top: 0.15rem;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 700;
-  color: var(--coral);
-  margin-top: 6px;
+  font-size: clamp(1.25rem, 4.2vw, 1.95rem);
+  letter-spacing: 0.17em;
+  margin-right: -0.17em;   /* cancels the trailing letter-space so the last letter lines up */
+  text-transform: uppercase;
 }
 
 @media (min-width: 860px) {
@@ -171,6 +185,7 @@ h1, h2 {
   }
   .hero-text { order: 1; max-width: none; text-align: left; }
   .hero-photo { order: 2; width: 340px; }
+  .hero-text .hero-title { margin-left: 0; margin-right: 0; }
   .hero-text .party-card,
   .hero-text .party-note { margin-left: 0; margin-right: 0; }
 }
@@ -283,15 +298,16 @@ h1, h2 {
 
 .story-strip img {
   display: block;
-  width: 96px;
-  height: 96px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 6px rgba(58, 46, 57, 0.22));
-  transition: transform 0.15s ease;
+  width: 84px;
+  height: 84px;
+  border-radius: 22px;
+  object-fit: cover;
+  border: 3px solid var(--white);
+  box-shadow: 0 6px 14px var(--shadow);
 }
 
-.story-strip a:hover img { transform: translateY(-3px) scale(1.04); }
-.story-strip a:focus-visible { outline: 3px solid var(--sky); outline-offset: 4px; border-radius: 16px; }
+.story-strip a:hover img { box-shadow: 0 0 0 3px var(--coral); }
+.story-strip a:focus-visible img { outline: 3px solid var(--sky); outline-offset: 2px; }
 
 @media (min-width: 900px) {
   .story-strip {
@@ -299,14 +315,14 @@ h1, h2 {
     flex-wrap: wrap;
     overflow: visible;
     row-gap: 16px;
-    max-width: 780px; /* seven heads per row, so 13 wrap as 7 + 6 */
+    max-width: 700px; /* seven tiles per row, so 13 wrap as 7 + 6 */
     margin-left: auto;
     margin-right: auto;
   }
 }
 
 @media (max-width: 720px) {
-  .story-strip img { width: 80px; height: 80px; }
+  .story-strip img { width: 72px; height: 72px; border-radius: 20px; }
 }
 
 .story {
@@ -368,7 +384,7 @@ h1, h2 {
   justify-self: end;
 }
 
-.chapter-photo a {
+.chapter-photo .chapter-frame {
   display: block;
   aspect-ratio: 4 / 5;
   border: 8px solid var(--white);
@@ -389,7 +405,7 @@ h1, h2 {
 .chapter-text { max-width: 340px; justify-self: start; }
 
 .chapter:nth-child(even) .chapter-photo { grid-column: 2; grid-row: 1; justify-self: start; }
-.chapter:nth-child(even) .chapter-photo a { transform: rotate(1.5deg); }
+.chapter:nth-child(even) .chapter-photo .chapter-frame { transform: rotate(1.5deg); }
 .chapter:nth-child(even) .chapter-text { grid-column: 1; grid-row: 1; justify-self: end; text-align: right; }
 
 .chapter-number {
