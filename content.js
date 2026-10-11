@@ -154,13 +154,13 @@ const CONTENT = {
     items: [
       {
         id: "ikea-uppsta-stacking-cups",
-        name: "UPPSTÅ – Jeu de gobelets, multicolore",
+        name: "Jeu de gobelets, multicolore",
         image: "images/gifts/ikea-uppsta-stacking-cups.jpg",
         claimed: false,
       },
       {
         id: "ikea-uppsta-stacking-rings",
-        name: "UPPSTÅ – Pyramide d'anneaux, multicolore",
+        name: "Pyramide d'anneaux, multicolore",
         image: "images/gifts/ikea-uppsta-stacking-rings.jpg",
         claimed: false,
       },
@@ -250,7 +250,7 @@ const CONTENT = {
       },
       {
         id: "ikea-uppsta-push-walker",
-        name: "UPPSTÅ – Chariot de marche, vert",
+        name: "Chariot de marche, vert",
         image: "images/gifts/ikea-uppsta-push-walker.jpg",
         claimed: false,
       },
@@ -274,7 +274,7 @@ const CONTENT = {
       },
       {
         id: "ikea-duktig-mini-kitchen",
-        name: "DUKTIG – Mini cuisine, bouleau",
+        name: "Mini cuisine, bouleau",
         image: "images/gifts/ikea-duktig-mini-kitchen.jpg",
         claimed: false,
       },
