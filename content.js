@@ -172,8 +172,8 @@ const CONTENT = {
       },
       {
         id: "large-interlocking-blocks",
-        name: "Large interlocking building blocks",
-        image: "",
+        name: "Big building bag, 60 large interlocking blocks",
+        image: "images/gifts/large-interlocking-blocks.jpg",
         claimed: false,
       },
       {
@@ -227,7 +227,7 @@ const CONTENT = {
       {
         id: "tongue-drum-xylophone",
         name: "Drum tambour à langues xylophone",
-        image: "",
+        image: "images/gifts/tongue-drum-xylophone.jpg",
         claimed: false,
       },
       {
@@ -238,8 +238,8 @@ const CONTENT = {
       },
       {
         id: "water-drawing-mat",
-        name: "Water drawing mat",
-        image: "",
+        name: "Baby water drawing mat",
+        image: "images/gifts/water-drawing-mat.jpg",
         claimed: false,
       },
       {
