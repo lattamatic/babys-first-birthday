@@ -86,27 +86,23 @@ minutes):
    spreadsheet. Name it something like "Baby gift choices".
 2. In the sheet, open **Extensions > Apps Script**. Delete the starter code,
    then paste in the whole of `apps-script/Code.gs` from this project.
-3. *(Optional)* Near the top, set a party code: `const PARTY_CODE = "HappyOne";`
-   Put the same code on the invitation. Guests type it once and their phone
-   remembers it. Leave it `""` for no code. It keeps strangers who find the link
-   from choosing gifts.
-4. Click the save icon. In the function menu at the top, pick **setup** and
+3. Click the save icon. In the function menu at the top, pick **setup** and
    click **Run**. Google asks you to authorize it: choose your account, and if it
    says the app isn't verified click **Advanced > Go to (project name)** (that's
    normal for your own script), then **Allow**. A **Claims** tab now exists in
    the sheet.
-5. Click **Deploy > New deployment**. Click the gear next to "Select type" and
+4. Click **Deploy > New deployment**. Click the gear next to "Select type" and
    pick **Web app**. Set **Execute as: Me** and **Who has access: Anyone**, then
    **Deploy**. Copy the **Web app URL** (it ends in `/exec`).
-6. Paste that URL into `content.js` as `gifts.claims.endpoint`, then publish.
-7. Test it: choose a gift on the live page and check that a row appears in the
+5. Paste that URL into `content.js` as `gifts.claims.endpoint`, then publish.
+6. Test it: choose a gift on the live page and check that a row appears in the
    sheet, then press **Release this gift** and check that it disappears.
 
 **Day to day you do nothing.** Choices appear in the sheet by themselves. To
 release a gift for someone, delete its row. **Keep the sheet private**: the
 "Undo key" column lets whoever holds a key release that gift.
 
-If you ever edit the script (including the party code), redeploy it: **Deploy >
+If you ever edit the script, redeploy it: **Deploy >
 Manage deployments > pencil icon > Version: New version > Deploy**. The URL
 stays the same.
 

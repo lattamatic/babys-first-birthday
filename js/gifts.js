@@ -20,18 +20,19 @@ const STORAGE_KEY = "giftClaims.v1";
 const claims = {
   taken: new Set(), // gift ids the server says are taken
   loaded: false,
-  codeRequired: false,
 };
 
-// What this browser remembers: its own undo keys, the guest's name, and the party code.
+// What this browser remembers: its own release keys and the guest's name.
 function readStore() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (saved && typeof saved === "object") return { tokens: {}, name: "", code: "", ...saved };
+    if (saved && typeof saved === "object") {
+      return { tokens: saved.tokens && typeof saved.tokens === "object" ? saved.tokens : {}, name: String(saved.name || "") };
+    }
   } catch (e) {
     // Storage blocked or corrupt — start fresh.
   }
-  return { tokens: {}, name: "", code: "" };
+  return { tokens: {}, name: "" };
 }
 
 let store = readStore();
@@ -40,7 +41,7 @@ function saveStore() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
   } catch (e) {
-    // Private mode etc. — choosing still works, only "undo from this phone" is lost on reload.
+    // Private mode etc. — choosing still works, only "release from this phone" is lost on reload.
   }
 }
 
@@ -71,9 +72,8 @@ async function refreshClaims() {
     const result = await apiList();
     if (!result.ok) throw new Error("bad response");
     claims.taken = new Set(result.claimed);
-    claims.codeRequired = Boolean(result.codeRequired);
     claims.loaded = true;
-    // Forget undo keys for gifts that were released from the sheet.
+    // Forget release keys for gifts that were released from the sheet.
     Object.keys(store.tokens).forEach((id) => {
       if (!claims.taken.has(id)) delete store.tokens[id];
     });
@@ -96,8 +96,6 @@ function showStatus(message) {
 const dialog = document.getElementById("claim-dialog");
 const form = document.getElementById("claim-form");
 const nameInput = document.getElementById("claim-name");
-const codeInput = document.getElementById("claim-code");
-const codeField = document.getElementById("claim-code-field");
 const errorBox = document.getElementById("claim-error");
 const confirmButton = document.getElementById("claim-confirm");
 let dialogItem = null;
@@ -111,8 +109,6 @@ function openClaimDialog(item) {
   dialogItem = item;
   document.getElementById("claim-item").textContent = item.name;
   nameInput.value = store.name;
-  codeInput.value = "";
-  codeField.hidden = !(claims.codeRequired && !store.code);
   showDialogError("");
   confirmButton.disabled = false;
   dialog.showModal();
@@ -138,21 +134,14 @@ form.addEventListener("submit", async (event) => {
   }
 
   const item = dialogItem;
-  const code = store.code || codeInput.value.trim();
-  if (claims.codeRequired && !code) {
-    showDialogError("Please enter the party code from your invitation.");
-    codeInput.focus();
-    return;
-  }
 
   confirmButton.disabled = true;
   showDialogError("");
   try {
-    const result = await apiPost({ action: "claim", id: item.id, item: item.name, name, code });
+    const result = await apiPost({ action: "claim", id: item.id, item: item.name, name });
     if (result.ok) {
       store.tokens[item.id] = result.token;
       store.name = name;
-      if (claims.codeRequired) store.code = code;
       saveStore();
       claims.taken.add(item.id);
       closeClaimDialog();
@@ -163,14 +152,6 @@ form.addEventListener("submit", async (event) => {
       closeClaimDialog();
       renderGrid();
       showStatus(`Sorry, someone just chose "${item.name}". Have a look at the others.`);
-    } else if (result.error === "bad_code") {
-      store.code = "";
-      saveStore();
-      codeField.hidden = false;
-      codeInput.value = "";
-      showDialogError("That party code doesn't look right. Please check your invitation.");
-      codeInput.focus();
-      confirmButton.disabled = false;
     } else {
       showDialogError("Something went wrong on our side. Please try again in a moment.");
       confirmButton.disabled = false;

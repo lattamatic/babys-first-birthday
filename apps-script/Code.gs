@@ -6,9 +6,6 @@
  * The sheet gets one row per chosen gift. Delete a row to release that gift.
  */
 
-// Shared code printed on the invitation. Guests type it once. Leave "" for no code.
-const PARTY_CODE = "";
-
 const SHEET_NAME = "Claims";
 const HEADERS = ["Chosen at", "Gift ID", "Gift", "Chosen by", "Undo key"];
 const MAX_CLAIMS = 300;
@@ -52,9 +49,6 @@ function claim_(body) {
   const item = String(body.item || "").trim().slice(0, 120);
 
   if (!/^[a-z0-9-]{1,80}$/.test(id) || !name) return { ok: false, error: "bad_request" };
-  if (PARTY_CODE && String(body.code || "").trim().toLowerCase() !== PARTY_CODE.toLowerCase()) {
-    return { ok: false, error: "bad_code" };
-  }
 
   const sheet = claimsSheet_();
   const rows = readRows_(sheet);
@@ -81,7 +75,7 @@ function release_(body) {
 // Only gift IDs are public. Names and undo keys never leave the sheet.
 function listClaims_() {
   const rows = readRows_(claimsSheet_());
-  return { ok: true, claimed: rows.map((r) => r[1]), codeRequired: PARTY_CODE !== "" };
+  return { ok: true, claimed: rows.map((r) => r[1]) };
 }
 
 function readRows_(sheet) {
