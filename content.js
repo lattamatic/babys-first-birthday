@@ -139,8 +139,9 @@ const CONTENT = {
   gifts: {
     intro:
       "Your presence at her party is the only present we need. If you'd like to bring " +
-      "something for her, here are some ideas. Tap \"I've chosen this\" on the one you're " +
-      "getting so nobody doubles up, then pick it up from your favourite shop.",
+      "something for her, here are some ideas, or feel free to bring something else you " +
+      "have in mind. If you pick one from the list, tap \"I've chosen this\" so nobody " +
+      "doubles up, then get it from your favourite shop.",
 
     /*
       Live "I've chosen this" buttons. Paste the web app URL from the Google
@@ -240,6 +241,12 @@ const CONTENT = {
         id: "water-drawing-mat",
         name: "Baby water drawing mat",
         image: "images/gifts/water-drawing-mat.jpg",
+        claimed: false,
+      },
+      {
+        id: "magic-slate",
+        name: "Large magic slate with feet, erasable magnetic drawing board (light pink)",
+        image: "images/gifts/magic-slate.jpg",
         claimed: false,
       },
       {
