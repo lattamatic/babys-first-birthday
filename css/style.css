@@ -493,8 +493,7 @@ h1, h2 {
 
 /* ---------- Gifts ---------- */
 
-.gifts-teaser-section { background: var(--cream); }
-.photos-teaser-section { background: var(--white); }
+.photos-teaser-section { background: var(--cream); }
 
 .photos-note {
   max-width: 520px;

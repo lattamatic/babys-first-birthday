@@ -10,9 +10,8 @@
 const CONTENT = {
   party: {
     date: "Sunday, 18 October 2026",
-    time: "3:00 PM, with dinner to follow",
     location: "Massy",
-    note: "Come celebrate with us — all we ask is you bring your happiest self.",
+    note: "Thank you for celebrating Bhuvi's first birthday with us. Having you there made it perfect.",
   },
 
   aboutBlurb:

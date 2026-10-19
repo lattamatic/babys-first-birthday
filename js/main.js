@@ -25,7 +25,6 @@ function renderHero() {
   document.getElementById("hero-script").textContent = CONTENT.hero.script;
   document.getElementById("hero-caps").textContent = CONTENT.hero.caps;
   document.getElementById("party-date").textContent = CONTENT.party.date;
-  document.getElementById("party-time").textContent = CONTENT.party.time;
   document.getElementById("party-location").textContent = CONTENT.party.location;
   document.getElementById("party-note").textContent = CONTENT.party.note;
 
@@ -107,10 +106,6 @@ function renderFinale(section, chapter, id) {
   img.alt = chapter.alt;
 }
 
-function renderGifts() {
-  document.getElementById("gifts-intro").textContent = CONTENT.gifts.intro;
-}
-
 function renderPhotosTeaser() {
   document.getElementById("photos-teaser-title").textContent = CONTENT.photos.title;
   document.getElementById("photos-teaser-intro").textContent = CONTENT.photos.intro;
@@ -119,5 +114,4 @@ function renderPhotosTeaser() {
 renderHero();
 renderAbout();
 renderStory();
-renderGifts();
 renderPhotosTeaser();
