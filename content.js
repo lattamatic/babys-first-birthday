@@ -21,11 +21,11 @@ const CONTENT = {
     "to celebrate her with the people who've loved her along the way.",
 
   hero: {
-    script: "Bhuvi",       // the big handwritten name
+    script: "Bhuvi Tara",  // the big handwritten name
     caps: "Turns one",     // the small capitals line under it
-    image: "images/hero.jpg",
+    image: "images/hero-party.jpg",
     focus: "50% 0%",
-    alt: "Bhuvi Tara in a bright pink puffer jacket, held up high and grinning in front of the Eiffel Tower lit up at dusk.",
+    alt: "Bhuvi Tara in a pink tulle dress with rosettes and fairy wings, sitting on the floor at her party and looking at the camera.",
   },
 
   // One chapter per photo, in order. `month` 0 = newborn, 12 = her first birthday.
