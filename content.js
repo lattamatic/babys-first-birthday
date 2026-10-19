@@ -138,9 +138,6 @@ const CONTENT = {
       "Thank you for celebrating with us! If you took photos or videos at the party, " +
       "please add them to our shared album, and enjoy everyone else's below.",
     folderId: "1rTpV8HjhA4-rEYYdnIDa5WGuLX7RvVCg",
-    addNote:
-      "Adding photos needs a free Google sign-in. On a phone, the Google Drive app " +
-      "keeps uploading in the background. No Google account? Send your photos to us directly.",
   },
 
   /*

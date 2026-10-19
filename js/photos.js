@@ -7,7 +7,6 @@
 
   document.getElementById("photos-title").textContent = photos.title;
   document.getElementById("photos-intro").textContent = photos.intro;
-  document.getElementById("photos-note").textContent = photos.addNote;
   document.getElementById("photos-add").href = folderUrl;
   document.getElementById("photos-open").href = folderUrl;
   document.getElementById("photos-frame").src =

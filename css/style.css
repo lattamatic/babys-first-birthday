@@ -495,13 +495,6 @@ h1, h2 {
 
 .photos-teaser-section { background: var(--cream); }
 
-.photos-note {
-  max-width: 520px;
-  margin: 16px auto 0;
-  font-size: 0.95rem;
-  opacity: 0.8;
-}
-
 .photos-frame {
   display: block;
   width: 100%;
