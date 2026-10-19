@@ -129,6 +129,22 @@ const CONTENT = {
   },
 
   /*
+    Party photos: a shared Google Drive folder. Guests add photos there and the
+    folder is shown on photos.html. `folderId` is the part of the folder's link
+    after /folders/. The folder must be shared as "Anyone with the link".
+  */
+  photos: {
+    title: "Party photos",
+    intro:
+      "Thank you for celebrating with us! If you took photos or videos at the party, " +
+      "please add them to our shared album, and enjoy everyone else's below.",
+    folderId: "1rTpV8HjhA4-rEYYdnIDa5WGuLX7RvVCg",
+    addNote:
+      "Adding photos needs a free Google sign-in. On a phone, the Google Drive app " +
+      "keeps uploading in the background. No Google account? Send your photos to us directly.",
+  },
+
+  /*
     The gift list: one card per gift, with a photo and a name guests can search
     for in any shop. Guests mark a gift as taken with the "I've chosen this"
     button (see `claims` below and the README). `claimed: true` on a gift is a

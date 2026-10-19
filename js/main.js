@@ -111,7 +111,13 @@ function renderGifts() {
   document.getElementById("gifts-intro").textContent = CONTENT.gifts.intro;
 }
 
+function renderPhotosTeaser() {
+  document.getElementById("photos-teaser-title").textContent = CONTENT.photos.title;
+  document.getElementById("photos-teaser-intro").textContent = CONTENT.photos.intro;
+}
+
 renderHero();
 renderAbout();
 renderStory();
 renderGifts();
+renderPhotosTeaser();
