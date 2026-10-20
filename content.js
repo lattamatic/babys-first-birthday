@@ -138,6 +138,8 @@ const CONTENT = {
       "Thank you for celebrating with us! If you took photos or videos at the party, " +
       "please add them to our shared album, and enjoy everyone else's below.",
     folderId: "1rTpV8HjhA4-rEYYdnIDa5WGuLX7RvVCg",
+    // The Apps Script web app that lists the folder (same URL as gifts.claims.endpoint).
+    endpoint: "https://script.google.com/macros/s/AKfycbyyYdCZo24ox7rKOlNXtHLQWIXhw5NHYoQRsmmK7_IlLYlYW7RrkG22u9iDv8qOUPOv2g/exec",
   },
 
   /*

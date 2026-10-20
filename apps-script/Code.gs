@@ -4,7 +4,14 @@
  * app. Setup steps are in the project README.
  *
  * The sheet gets one row per chosen gift. Delete a row to release that gift.
+ *
+ * It also lists the photos and videos in the shared party-photos Drive folder
+ * (GET ?action=photos) so the site can show them in its own gallery.
  */
+
+// The id of the shared party-photos Drive folder (the part of its link after /folders/).
+const PHOTOS_FOLDER_ID = "1rTpV8HjhA4-rEYYdnIDa5WGuLX7RvVCg";
+const MAX_PHOTOS = 500;
 
 const SHEET_NAME = "Claims";
 const HEADERS = ["Chosen at", "Gift ID", "Gift", "Chosen by", "Undo key"];
@@ -13,9 +20,11 @@ const MAX_CLAIMS = 300;
 /** Run once from the editor to authorize the script and create the sheet tab. */
 function setup() {
   claimsSheet_();
+  DriveApp.getFolderById(PHOTOS_FOLDER_ID).getName(); // asks for permission to read the folder
 }
 
-function doGet() {
+function doGet(e) {
+  if (e && e.parameter && e.parameter.action === "photos") return json_(listPhotos_());
   return json_(listClaims_());
 }
 
@@ -76,6 +85,21 @@ function release_(body) {
 function listClaims_() {
   const rows = readRows_(claimsSheet_());
   return { ok: true, claimed: rows.map((r) => r[1]) };
+}
+
+// Only file ids, kinds and dates are returned, never names or owners. The folder is
+// already shared by link, so these ids are what anyone with the link can see.
+function listPhotos_() {
+  const files = DriveApp.getFolderById(PHOTOS_FOLDER_ID).getFiles();
+  const photos = [];
+  while (files.hasNext() && photos.length < MAX_PHOTOS) {
+    const file = files.next();
+    const mime = file.getMimeType();
+    const kind = mime.indexOf("image/") === 0 ? "image" : mime.indexOf("video/") === 0 ? "video" : "";
+    if (kind) photos.push({ id: file.getId(), kind: kind, at: file.getDateCreated().getTime() });
+  }
+  photos.sort((a, b) => b.at - a.at);
+  return { ok: true, photos: photos };
 }
 
 function readRows_(sheet) {

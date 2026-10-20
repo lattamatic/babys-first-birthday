@@ -6,7 +6,7 @@
 <title>Party Photos · Bhuvi Tara's First Birthday</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=15" />
+<link rel="stylesheet" href="css/style.css?v=16" />
 </head>
 <body>
 
@@ -24,18 +24,27 @@
   <main>
     <section class="section">
       <div class="section-inner section-inner-wide">
-        <iframe class="photos-frame" id="photos-frame" title="Shared party photos" loading="lazy"></iframe>
+        <p class="gift-status" id="photos-status" role="status">Loading photos…</p>
+        <div class="photo-grid" id="photo-grid"></div>
+        <iframe class="photos-frame" id="photos-frame" title="Shared party photos" loading="lazy" hidden></iframe>
         <p class="photos-fallback"><a id="photos-open" target="_blank" rel="noopener">Open the album in Google Drive</a> if the photos don't show above.</p>
       </div>
     </section>
   </main>
 
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close">×</button>
+    <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous">‹</button>
+    <div class="lightbox-stage" id="lightbox-stage"></div>
+    <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next">›</button>
+  </dialog>
+
   <footer class="site-footer">
     <p class="footer-sub">Made with love, one chapter at a time.</p>
   </footer>
 
-  <script src="content.js?v=20"></script>
-  <script src="js/photos.js?v=2"></script>
+  <script src="content.js?v=21"></script>
+  <script src="js/photos.js?v=3"></script>
   <script src="js/to-top.js?v=1"></script>
 </body>
 </html>
