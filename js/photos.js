@@ -16,7 +16,10 @@
   const status = document.getElementById("photos-status");
   const grid = document.getElementById("photo-grid");
   const frame = document.getElementById("photos-frame");
-  let items = [];
+  const filters = document.getElementById("photo-filters");
+  let allItems = [];
+  let items = []; // what is currently shown (the pop-up viewer steps through these)
+  let filter = "all";
 
   function showEmbedFallback() {
     status.hidden = true;
@@ -29,20 +32,41 @@
       const response = await fetch(`${photos.endpoint}?action=photos&t=${Date.now()}`);
       const data = await response.json();
       if (!data.ok || !Array.isArray(data.photos)) throw new Error("bad response");
-      items = data.photos;
+      allItems = data.photos;
     } catch (e) {
       showEmbedFallback();
       return;
     }
-    if (!items.length) {
+    if (!allItems.length) {
       status.textContent = "No photos yet. Be the first to add one!";
       return;
     }
     status.hidden = true;
+    setupFilters();
     renderGrid();
   }
 
+  // "All / Photos / Videos" buttons, only shown when the folder has both kinds.
+  function setupFilters() {
+    const counts = { all: allItems.length, image: 0, video: 0 };
+    allItems.forEach((item) => { counts[item.kind] += 1; });
+    if (!counts.image || !counts.video) return;
+    filters.querySelectorAll(".photo-filter").forEach((button) => {
+      const label = button.textContent;
+      button.textContent = `${label} (${counts[button.dataset.filter]})`;
+      button.addEventListener("click", () => {
+        filter = button.dataset.filter;
+        filters.querySelectorAll(".photo-filter").forEach((other) => {
+          other.setAttribute("aria-pressed", String(other === button));
+        });
+        renderGrid();
+      });
+    });
+    filters.hidden = false;
+  }
+
   function renderGrid() {
+    items = allItems.filter((item) => filter === "all" || item.kind === filter);
     grid.innerHTML = "";
     items.forEach((item, index) => {
       const tile = document.createElement("button");

@@ -506,6 +506,28 @@ h1, h2 {
   box-shadow: 0 10px 24px var(--shadow);
 }
 
+.photo-filters {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.photo-filter {
+  padding: 8px 18px;
+  border: 2px solid var(--coral);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font-family: "Baloo 2", cursive;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.photo-filter[aria-pressed="true"] { background: var(--coral); color: var(--white); }
+.photo-filter:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; }
+
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
